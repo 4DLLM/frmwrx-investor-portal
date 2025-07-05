@@ -1,0 +1,1902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRMWRX Technologies - Breakthrough Infrastructure for the Future</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fafafa;
+            scroll-behavior: smooth;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #e5e5e5;
+            z-index: 1000;
+            padding: 0 24px;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #000;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-secondary {
+            color: #666;
+            background: transparent;
+        }
+
+        .btn-secondary:hover {
+            color: #000;
+        }
+
+        .btn-primary {
+            background: #000;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #333;
+        }
+
+        /* Section Dividers */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e5e5e5, transparent);
+            margin: 60px 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 24px 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .validation-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 1px solid #0ea5e9;
+            color: #0369a1;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #000 0%, #333 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 80px;
+        }
+
+        .btn-large {
+            padding: 16px 32px;
+            font-size: 16px;
+            border-radius: 8px;
+        }
+
+        /* Performance Metrics */
+        .metrics {
+            background: white;
+            border-radius: 16px;
+            padding: 48px;
+            margin: 80px auto;
+            max-width: 1000px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .validated-badge {
+            position: absolute;
+            top: -10px;
+            right: 24px;
+            background: #10b981;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metrics h2 {
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .metric-item {
+            text-align: center;
+            padding: 32px 24px;
+            border-radius: 12px;
+            background: #f8f9fa;
+        }
+
+        .metric-value {
+            font-size: 48px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 8px;
+            line-height: 1;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .metric-description {
+            font-size: 12px;
+            color: #888;
+        }
+
+        /* Technology Stack */
+        .tech-stack {
+            max-width: 1200px;
+            margin: 80px auto 60px;
+            padding: 0 24px;
+        }
+
+        .tech-stack h2 {
+            font-size: 40px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .tech-stack p {
+            font-size: 18px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 64px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .tech-card {
+            background: white;
+            border-radius: 12px;
+            padding: 28px;
+            border: 1px solid #e5e5e5;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .tech-icon {
+            width: 48px;
+            height: 48px;
+            background: #f0f9ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #0369a1;
+        }
+
+        .tech-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .tech-card p {
+            color: #666;
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .tech-performance {
+            font-size: 14px;
+            color: #000;
+            font-weight: 600;
+            background: #f0f9ff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        /* Market Opportunity */
+        .market {
+            background: #000;
+            color: white;
+            padding: 120px 24px;
+            text-align: center;
+            position: relative;
+        }
+
+        .market::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #333, transparent);
+        }
+
+        .market-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .market h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .market p {
+            font-size: 18px;
+            color: #ccc;
+            margin-bottom: 48px;
+        }
+
+        .market-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .market-stat {
+            padding: 24px;
+        }
+
+        .market-stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .market-stat-label {
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* Team Section */
+        .team {
+            max-width: 1000px;
+            margin: 120px auto;
+            padding: 0 24px;
+            text-align: center;
+        }
+
+        .team h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .team p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 48px;
+        }
+
+        .founder-card {
+            background: white;
+            border-radius: 16px;
+            padding: 48px;
+            border: 1px solid #e5e5e5;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .founder-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .founder-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 4px solid #f0f9ff;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .founder-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .founder-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .founder-title {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .founder-bio {
+            color: #666;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .founder-bio p {
+            margin-bottom: 16px;
+        }
+
+        .founder-quote {
+            font-style: italic;
+            color: #444;
+            border-left: 3px solid #0ea5e9;
+            padding-left: 16px;
+            margin-top: 24px;
+        }
+
+        /* Investment Section */
+        .investment {
+            max-width: 1000px;
+            margin: 120px auto;
+            padding: 0 24px;
+            text-align: center;
+        }
+
+        .investment h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .investment p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 48px;
+        }
+
+        .investment-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin-bottom: 64px;
+        }
+
+        .highlight {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .highlight-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 8px;
+        }
+
+        .highlight-text {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #f8f9fa;
+            padding: 80px 24px 40px;
+            text-align: center;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .footer p {
+            color: #666;
+            margin-bottom: 32px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: #000;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #e5e5e5;
+            padding-top: 32px;
+            color: #999;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 100px 16px 60px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .metrics {
+                padding: 32px 24px;
+                margin: 40px 16px;
+            }
+            
+            .metric-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .metric-value {
+                font-size: 32px;
+            }
+            
+            .tech-stack {
+                padding: 0 16px;
+                margin: 60px auto 40px;
+            }
+            
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .market {
+                padding: 80px 16px;
+            }
+            
+            .market-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .team {
+                padding: 0 16px;
+            }
+            
+            .founder-card {
+                padding: 32px 24px;
+            }
+            
+            .investment {
+                padding: 0 16px;
+            }
+            
+            .investment-highlights {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .metric-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .market-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .investment-highlights {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-divider {
+                margin: 40px 0;
+            }
+            
+            .tech-stack {
+                margin: 40px auto 30px;
+            }
+            
+            .blockchain-metrics {
+                padding: 40px 16px 60px;
+            }
+            
+            .dashboard-header {
+                margin-bottom: 40px;
+            }
+            
+            .tech-card {
+                padding: 20px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Performance Comparison */
+        .performance-comparison {
+            background: #f8f9fa;
+            padding: 120px 24px;
+        }
+
+        .performance-comparison .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .performance-comparison h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .performance-comparison .section-subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 64px;
+        }
+
+        /* Bar Chart Styles */
+        .bar-chart-container {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e5e5e5;
+            padding: 32px;
+            margin-bottom: 48px;
+        }
+
+        .bar-chart-container h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 32px;
+            color: #000;
+            text-align: left;
+        }
+
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .bar-item {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .bar-label {
+            min-width: 120px;
+            text-align: left;
+            font-weight: 600;
+            color: #000;
+            font-size: 16px;
+        }
+
+        .bar-wrapper {
+            flex: 1;
+            position: relative;
+            background: #f1f1f1;
+            height: 40px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .bar {
+            height: 100%;
+            background: linear-gradient(135deg, #94a3b8, #64748b);
+            border-radius: 8px;
+            position: relative;
+            min-width: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 12px;
+            transition: width 2s ease-out;
+        }
+
+        .frmwrx-bar {
+            background: linear-gradient(135deg, #0ea5e9, #0369a1) !important;
+        }
+
+        .cost-bar {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+
+        .cost-chart .frmwrx-bar {
+            background: linear-gradient(135deg, #10b981, #059669) !important;
+        }
+
+        .bar-value {
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            white-space: nowrap;
+        }
+
+        .bar[style*="width: 0."] .bar-value,
+        .bar[style*="width: 1."] .bar-value {
+            position: absolute;
+            right: -60px;
+            color: #374151;
+            text-shadow: none;
+        }
+
+        /* Performance Stats */
+        .performance-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 32px 24px;
+            border-radius: 12px;
+            border: 1px solid #e5e5e5;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #10b981;
+            margin-bottom: 8px;
+        }
+
+        .stat-description {
+            color: #666;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Blockchain Metrics Dashboard */
+        .blockchain-metrics {
+            background: #f8f9fa;
+            padding: 80px 24px 120px;
+        }
+
+        .metrics-dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .dashboard-header h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 32px;
+        }
+
+        .dashboard-header .section-subtitle {
+            margin-bottom: 16px;
+        }
+
+        .dashboard-header .section-subtitle:last-of-type {
+            margin-bottom: 40px;
+        }
+
+        .champion-badge {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .blockchain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .blockchain-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .blockchain-card.sacred-nexus {
+            border: 2px solid #10b981;
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.2);
+        }
+
+        .blockchain-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .blockchain-card.sacred-nexus:hover {
+            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.3);
+        }
+
+        .blockchain-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .blockchain-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 24px;
+            margin-right: 20px;
+            color: white;
+        }
+
+        .btc { background: #f7931a; }
+        .eth { background: #627eea; }
+        .sol { background: #9945ff; }
+        .ada { background: #0033ad; }
+        .dot { background: #e6007a; }
+        .sacred { background: linear-gradient(135deg, #10b981, #0ea5e9); }
+
+        .blockchain-info h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #000;
+        }
+
+        .blockchain-info .subtitle {
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .metrics-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .metric {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .sacred-nexus .metric {
+            background: #f0f9ff;
+        }
+
+        .metric:hover {
+            transform: scale(1.05);
+        }
+
+        .metric-value {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #000;
+        }
+
+        .sacred-nexus .metric-value {
+            background: linear-gradient(135deg, #10b981, #0ea5e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .balance-score {
+            text-align: center;
+        }
+
+        .balance-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .balance-bar {
+            height: 8px;
+            background: #e5e5e5;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .balance-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 2s ease-out;
+        }
+
+        .balance-percentage {
+            font-size: 20px;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .sacred-nexus .balance-percentage {
+            background: linear-gradient(135deg, #10b981, #0ea5e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .performance-bars {
+            margin-bottom: 60px;
+        }
+
+        .comparison-section {
+            text-align: center;
+        }
+
+        .comparison-title {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #000 0%, #333 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .comparison-subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 48px;
+        }
+
+        .radar-chart {
+            background: white;
+            border-radius: 16px;
+            padding: 48px;
+            margin: 40px auto;
+            max-width: 1000px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+
+        .category-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .category-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #666;
+        }
+
+        .winner {
+            font-size: 20px;
+            font-weight: 700;
+            color: #10b981;
+            margin-bottom: 8px;
+        }
+
+        .winner-note {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .advantage-section {
+            margin-top: 48px;
+            background: white;
+            border-radius: 16px;
+            padding: 48px;
+            border: 2px solid #10b981;
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.1);
+        }
+
+        .advantage-title {
+            color: #10b981;
+            margin-bottom: 24px;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .advantage-text {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .advantage-highlight {
+            color: #10b981;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        /* Mobile responsive for bar charts */
+        @media (max-width: 768px) {
+            .bar-chart-container {
+                padding: 24px 16px;
+            }
+            
+            .bar-chart-container h3 {
+                font-size: 20px;
+                text-align: center;
+                margin-bottom: 24px;
+            }
+            
+            .bar-item {
+                flex-direction: column;
+                gap: 8px;
+                align-items: stretch;
+            }
+            
+            .bar-label {
+                min-width: unset;
+                text-align: center;
+                font-size: 14px;
+            }
+            
+            .bar-wrapper {
+                height: 32px;
+            }
+            
+            .bar-value {
+                font-size: 12px;
+            }
+            
+            .bar[style*="width: 0."] .bar-value,
+            .bar[style*="width: 1."] .bar-value {
+                position: relative;
+                right: unset;
+                color: white;
+                text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            }
+            
+            .performance-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+            
+            .stat-card {
+                padding: 20px 16px;
+            }
+            
+            .stat-number {
+                font-size: 28px;
+            }
+            
+            .stat-description {
+                font-size: 14px;
+            }
+            
+            .blockchain-metrics {
+                padding: 60px 16px 80px;
+            }
+            
+            .blockchain-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .blockchain-card {
+                padding: 24px;
+            }
+            
+            .metrics-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .radar-chart {
+                padding: 32px 24px;
+            }
+            
+            .category-comparison {
+                grid-template-columns: 1fr;
+            }
+            
+            .advantage-section {
+                padding: 32px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="logo">FRMWRX</a>
+            <ul class="nav-links">
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#performance">Performance</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#investment">Investment</a></li>
+            </ul>
+            <div class="cta-buttons">
+                <a href="mailto:invest@frmwrx.com" class="btn btn-secondary">Contact</a>
+                <a href="#investment" class="btn btn-primary">View Package</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero fade-in">
+        <div class="validation-badge">AI-Synthesized Breakthrough Results</div>
+        <h1>AI-synthesized breakthrough<br>infrastructure for the future</h1>
+        <p>Revolutionary performance improvements up to 2000x faster with 99.9% energy savings. Discovered through advanced AI analysis. 14 patents. $387B market opportunity.</p>
+        <div class="hero-cta">
+            <a href="#investment" class="btn btn-primary btn-large">Investment Package</a>
+            <a href="#performance" class="btn btn-secondary btn-large">View Performance</a>
+        </div>
+    </section>
+
+    <!-- Performance Metrics -->
+    <section class="metrics fade-in" id="performance">
+        <div class="validated-badge">Verified</div>
+        <h2>Validated Performance Results</h2>
+        <div class="metric-grid">
+            <div class="metric-item">
+                <div class="metric-value">71,347</div>
+                <div class="metric-label">Transactions Per Second</div>
+                <div class="metric-description">vs Bitcoin: 7 TPS</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-value">0.7ms</div>
+                <div class="metric-label">Transaction Latency</div>
+                <div class="metric-description">700% faster than target</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-value">2000x</div>
+                <div class="metric-label">Speed Improvement</div>
+                <div class="metric-description">Vector database performance</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-value">99.1%</div>
+                <div class="metric-label">Energy Savings</div>
+                <div class="metric-description">Geometric consensus protocol</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-value">10:1</div>
+                <div class="metric-label">Compression Ratio</div>
+                <div class="metric-description">Without quality loss</div>
+            </div>
+            <div class="metric-item">
+                <div class="metric-value">Six 9s</div>
+                <div class="metric-label">Security Protection</div>
+                <div class="metric-description">99.9999% • Zero false positives</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Technology Stack -->
+    <section class="tech-stack fade-in" id="technology">
+        <h2>Seven breakthrough technologies</h2>
+        <p>Interconnected systems discovered through advanced AI analysis of cross-disciplinary patterns, delivering unprecedented performance across blockchain, databases, and enterprise infrastructure.</p>
+        
+        <div class="tech-grid">
+            <div class="tech-card">
+                <div class="tech-icon">TXN</div>
+                <h3>Sacred Nexus</h3>
+                <p>High-performance blockchain platform with revolutionary consensus mechanism discovered through AI pattern analysis</p>
+                <div class="tech-performance">71,347 TPS • 0.7ms latency</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">DB</div>
+                <h3>Vector Vault</h3>
+                <p>Multi-dimensional database with AI-optimized compression and lightning-fast queries</p>
+                <div class="tech-performance">2000x speed • 10:1 compression</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">SYNC</div>
+                <h3>GeoSync Protocol</h3>
+                <p>AI-discovered geometric consensus mechanism delivering massive energy efficiency gains</p>
+                <div class="tech-performance">99.1% energy savings</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">ZIP</div>
+                <h3>Dimex Codex</h3>
+                <p>Advanced compression algorithm synthesized from AI analysis of geometric patterns</p>
+                <div class="tech-performance">10:1 ratio • 3.3x speed</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">UI</div>
+                <h3>Geo Interface</h3>
+                <p>AI-optimized adaptive user interface with sub-10ms response times</p>
+                <div class="tech-performance">7.5ms response time</div>
+            </div>
+            <div class="tech-card">
+                <div class="tech-icon">SEC</div>
+                <h3>Quantum Bastion</h3>
+                <p>Next-generation security system with AI-enhanced quantum-resistant protection</p>
+                <div class="tech-performance">99.9999% protection rate</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Sacred Nexus vs Blockchain Leaders -->
+    <section class="blockchain-metrics fade-in">
+        <div class="metrics-dashboard">
+            <div class="dashboard-header">
+                <div class="validation-badge">Complete Blockchain Analysis</div>
+                <h2>Sacred Nexus vs Industry Leaders</h2>
+                <p class="section-subtitle">Comprehensive performance analysis across all blockchain success factors.</p>
+                <p class="section-subtitle">Sacred Nexus delivers breakthrough results in every category that matters.</p>
+                <div class="champion-badge">Dominates All Metrics</div>
+            </div>
+
+            <div class="blockchain-grid">
+                <!-- Sacred Nexus -->
+                <div class="blockchain-card sacred-nexus">
+                    <div class="validated-badge">Patent Protected</div>
+                    <div class="blockchain-header">
+                        <div class="blockchain-logo sacred">SN</div>
+                        <div class="blockchain-info">
+                            <h3>Sacred Nexus</h3>
+                            <div class="subtitle">FRMWRX Origin Based Intelligence</div>
+                        </div>
+                    </div>
+                    <div class="metrics-container">
+                        <div class="metric">
+                            <div class="metric-value">71,347</div>
+                            <div class="metric-label">TPS</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">0.7ms</div>
+                            <div class="metric-label">Latency</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">32</div>
+                            <div class="metric-label">Sacred Nodes</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">99.1%</div>
+                            <div class="metric-label">Energy Saved</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">$0.0001</div>
+                            <div class="metric-label">Tx Cost</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">Six 9s</div>
+                            <div class="metric-label">Security</div>
+                        </div>
+                    </div>
+                    <div class="balance-score">
+                        <div class="balance-label">Overall Balance Score</div>
+                        <div class="balance-bar">
+                            <div class="balance-fill" style="width: 98%; background: linear-gradient(90deg, #10b981, #0ea5e9);"></div>
+                        </div>
+                        <div class="balance-percentage">98/100</div>
+                    </div>
+                </div>
+
+                <!-- Bitcoin -->
+                <div class="blockchain-card">
+                    <div class="blockchain-header">
+                        <div class="blockchain-logo btc">₿</div>
+                        <div class="blockchain-info">
+                            <h3>Bitcoin</h3>
+                            <div class="subtitle">Proof of Work Pioneer</div>
+                        </div>
+                    </div>
+                    <div class="metrics-container">
+                        <div class="metric">
+                            <div class="metric-value">7</div>
+                            <div class="metric-label">TPS</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">10min</div>
+                            <div class="metric-label">Latency</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">15,000</div>
+                            <div class="metric-label">Nodes</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">High</div>
+                            <div class="metric-label">Energy Use</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">$15</div>
+                            <div class="metric-label">Tx Cost</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">99.9%</div>
+                            <div class="metric-label">Security</div>
+                        </div>
+                    </div>
+                    <div class="balance-score">
+                        <div class="balance-label">Overall Balance Score</div>
+                        <div class="balance-bar">
+                            <div class="balance-fill" style="width: 42%; background: #f7931a;"></div>
+                        </div>
+                        <div class="balance-percentage">42/100</div>
+                    </div>
+                </div>
+
+                <!-- Ethereum -->
+                <div class="blockchain-card">
+                    <div class="blockchain-header">
+                        <div class="blockchain-logo eth">Ξ</div>
+                        <div class="blockchain-info">
+                            <h3>Ethereum</h3>
+                            <div class="subtitle">Smart Contract Leader</div>
+                        </div>
+                    </div>
+                    <div class="metrics-container">
+                        <div class="metric">
+                            <div class="metric-value">15</div>
+                            <div class="metric-label">TPS</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">13s</div>
+                            <div class="metric-label">Latency</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">8,000</div>
+                            <div class="metric-label">Nodes</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">Medium</div>
+                            <div class="metric-label">Energy Use</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">$8</div>
+                            <div class="metric-label">Tx Cost</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">99.8%</div>
+                            <div class="metric-label">Security</div>
+                        </div>
+                    </div>
+                    <div class="balance-score">
+                        <div class="balance-label">Overall Balance Score</div>
+                        <div class="balance-bar">
+                            <div class="balance-fill" style="width: 56%; background: #627eea;"></div>
+                        </div>
+                        <div class="balance-percentage">56/100</div>
+                    </div>
+                </div>
+
+                <!-- Solana -->
+                <div class="blockchain-card">
+                    <div class="blockchain-header">
+                        <div class="blockchain-logo sol">◎</div>
+                        <div class="blockchain-info">
+                            <h3>Solana</h3>
+                            <div class="subtitle">High Performance Chain</div>
+                        </div>
+                    </div>
+                    <div class="metrics-container">
+                        <div class="metric">
+                            <div class="metric-value">3,000</div>
+                            <div class="metric-label">TPS</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">400ms</div>
+                            <div class="metric-label">Latency</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">1,800</div>
+                            <div class="metric-label">Nodes</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">Low</div>
+                            <div class="metric-label">Energy Use</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">$0.01</div>
+                            <div class="metric-label">Tx Cost</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">95%</div>
+                            <div class="metric-label">Security</div>
+                        </div>
+                    </div>
+                    <div class="balance-score">
+                        <div class="balance-label">Overall Balance Score</div>
+                        <div class="balance-bar">
+                            <div class="balance-fill" style="width: 74%; background: #9945ff;"></div>
+                        </div>
+                        <div class="balance-percentage">74/100</div>
+                    </div>
+                </div>
+
+                <!-- Cardano -->
+                <div class="blockchain-card">
+                    <div class="blockchain-header">
+                        <div class="blockchain-logo ada">₳</div>
+                        <div class="blockchain-info">
+                            <h3>Cardano</h3>
+                            <div class="subtitle">Research-Driven PoS</div>
+                        </div>
+                    </div>
+                    <div class="metrics-container">
+                        <div class="metric">
+                            <div class="metric-value">250</div>
+                            <div class="metric-label">TPS</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">20s</div>
+                            <div class="metric-label">Latency</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">3,000</div>
+                            <div class="metric-label">Nodes</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">Very Low</div>
+                            <div class="metric-label">Energy Use</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">$0.18</div>
+                            <div class="metric-label">Tx Cost</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">99%</div>
+                            <div class="metric-label">Security</div>
+                        </div>
+                    </div>
+                    <div class="balance-score">
+                        <div class="balance-label">Overall Balance Score</div>
+                        <div class="balance-bar">
+                            <div class="balance-fill" style="width: 68%; background: #0033ad;"></div>
+                        </div>
+                        <div class="balance-percentage">68/100</div>
+                    </div>
+                </div>
+
+                <!-- Polkadot -->
+                <div class="blockchain-card">
+                    <div class="blockchain-header">
+                        <div class="blockchain-logo dot">●</div>
+                        <div class="blockchain-info">
+                            <h3>Polkadot</h3>
+                            <div class="subtitle">Interoperable Parachains</div>
+                        </div>
+                    </div>
+                    <div class="metrics-container">
+                        <div class="metric">
+                            <div class="metric-value">1,000</div>
+                            <div class="metric-label">TPS</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">6s</div>
+                            <div class="metric-label">Latency</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">300</div>
+                            <div class="metric-label">Nodes</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">Very Low</div>
+                            <div class="metric-label">Energy Use</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">$0.12</div>
+                            <div class="metric-label">Tx Cost</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">98%</div>
+                            <div class="metric-label">Security</div>
+                        </div>
+                    </div>
+                    <div class="balance-score">
+                        <div class="balance-label">Overall Balance Score</div>
+                        <div class="balance-bar">
+                            <div class="balance-fill" style="width: 71%; background: #e6007a;"></div>
+                        </div>
+                        <div class="balance-percentage">71/100</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="performance-bars">
+                <div class="bar-chart-container">
+                    <h3>Transactions Per Second Performance</h3>
+                    <div class="bar-chart">
+                        <div class="bar-item">
+                            <div class="bar-label">Sacred Nexus</div>
+                            <div class="bar-wrapper">
+                                <div class="bar frmwrx-bar" style="width: 100%;">
+                                    <span class="bar-value">71,347</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Solana</div>
+                            <div class="bar-wrapper">
+                                <div class="bar" style="width: 4.2%;">
+                                    <span class="bar-value">3,000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Polkadot</div>
+                            <div class="bar-wrapper">
+                                <div class="bar" style="width: 1.4%;">
+                                    <span class="bar-value">1,000</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Cardano</div>
+                            <div class="bar-wrapper">
+                                <div class="bar" style="width: 0.35%;">
+                                    <span class="bar-value">250</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Ethereum</div>
+                            <div class="bar-wrapper">
+                                <div class="bar" style="width: 0.02%;">
+                                    <span class="bar-value">15</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label">Bitcoin</div>
+                            <div class="bar-wrapper">
+                                <div class="bar" style="width: 0.01%;">
+                                    <span class="bar-value">7</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comparison-section">
+                <h2 class="comparison-title">Sacred Nexus: Complete Dominance</h2>
+                <p class="comparison-subtitle">The only blockchain that excels in every success metric</p>
+                
+                <div class="radar-chart">
+                    <div class="category-comparison">
+                        <div class="category-item">
+                            <div class="category-title">Performance (TPS)</div>
+                            <div class="winner">Sacred Nexus</div>
+                            <div class="winner-note">24x faster than Solana</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-title">Speed (Latency)</div>
+                            <div class="winner">Sacred Nexus</div>
+                            <div class="winner-note">571x faster than Solana</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-title">Cost Efficiency</div>
+                            <div class="winner">Sacred Nexus</div>
+                            <div class="winner-note">100x cheaper than Solana</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-title">Energy Efficiency</div>
+                            <div class="winner">Sacred Nexus</div>
+                            <div class="winner-note">99.1% energy savings</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-title">Security</div>
+                            <div class="winner">Sacred Nexus</div>
+                            <div class="winner-note">Six 9s protection rate</div>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-title">Innovation</div>
+                            <div class="winner">Sacred Nexus</div>
+                            <div class="winner-note">32-node sacred geometry</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="advantage-section">
+                <h3 class="advantage-title">The Sacred Nexus Breakthrough</h3>
+                <p class="advantage-text">
+                    While other blockchains excel in one or two areas, Sacred Nexus achieves breakthrough performance across ALL success metrics. Our patent-protected sacred geometry optimization delivers the perfect balance of speed, security, decentralization, and cost efficiency that the industry has been waiting for.
+                </p>
+                <div class="advantage-highlight">
+                    Sacred Nexus: The only blockchain that doesn't compromise.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Opportunity -->
+    <section class="market fade-in">
+        <div class="market-content">
+            <h2>Massive market opportunity</h2>
+            <p>Positioned at the intersection of three high-growth markets with validated enterprise demand</p>
+            
+            <div class="market-stats">
+                <div class="market-stat">
+                    <div class="market-stat-value">$387B</div>
+                    <div class="market-stat-label">Total Addressable Market</div>
+                </div>
+                <div class="market-stat">
+                    <div class="market-stat-value">$240B</div>
+                    <div class="market-stat-label">Database Market</div>
+                </div>
+                <div class="market-stat">
+                    <div class="market-stat-value">$67B</div>
+                    <div class="market-stat-label">Blockchain Market</div>
+                </div>
+                <div class="market-stat">
+                    <div class="market-stat-value">$80B</div>
+                    <div class="market-stat-label">Storage Market</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Team Section -->
+    <section class="team fade-in" id="team">
+        <h2>Leadership Team</h2>
+        <p>Visionary leadership driving breakthrough innovation through AI orchestration and divine purpose</p>
+        
+        <div class="founder-card">
+            <div class="founder-header">
+                <div class="founder-avatar">
+                    <img src="Github2.gif" alt="J. Kenny - Founder & CEO">
+                </div>
+                <div class="founder-name">J. Kenny</div>
+                <div class="founder-title">Founder & CEO</div>
+            </div>
+            
+            <div class="founder-bio">
+                <h4>Professional Bio</h4>
+                
+                <p>Kenny is a systems architect who leverages advanced AI tools to drive groundbreaking infrastructure performance. By orchestrating cutting-edge technologies, Kenny optimizes complex systems, achieving remarkable efficiency and innovation. This approach led to a discovery that sacred geometry principles could enhance blockchain consensus, database compression, and security systems, delivering an unprecedented 71,347 TPS performance.</p>
+                
+                <div class="founder-quote" style="margin-top: 24px; border-left-color: #10b981; font-weight: 600;">
+                    "FRMWRX - Technology that complements creation, unlocking potential inherent since the beginning of time."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Investment Section -->
+    <section class="investment fade-in" id="investment">
+        <h2>Series A Investment Opportunity</h2>
+        <p>Join us in revolutionizing enterprise infrastructure with AI-synthesized breakthrough technology validated across 6 of 7 core systems</p>
+        
+        <div class="investment-highlights">
+            <div class="highlight">
+                <div class="highlight-number">$25M</div>
+                <div class="highlight-text">Series A funding target</div>
+            </div>
+            <div class="highlight">
+                <div class="highlight-number">20%</div>
+                <div class="highlight-text">Equity for investors</div>
+            </div>
+            <div class="highlight">
+                <div class="highlight-number">$285M</div>
+                <div class="highlight-text">Year 5 revenue projection</div>
+            </div>
+            <div class="highlight">
+                <div class="highlight-number">67x</div>
+                <div class="highlight-text">Potential investor returns</div>
+            </div>
+        </div>
+        
+        <div class="hero-cta">
+            <a href="FRMWRX_INVEST.pdf" class="btn btn-primary btn-large">Download Investment Package</a>
+            <a href="mailto:invest.frmwrx@proton.me" class="btn btn-secondary btn-large">Schedule Meeting</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>FRMWRX Technologies</h3>
+            <p>AI-synthesized breakthrough infrastructure for the future</p>
+            
+            <div class="mission-statement" style="margin: 32px 0; padding: 24px; background: white; border-radius: 12px; border: 1px solid #e5e5e5;">
+                <em style="color: #666; font-size: 16px;">"Technology that compliments God's creation, delivering what has been placed in front of us since the beginning of times"</em>
+            </div>
+            
+            <div class="footer-links">
+                <a href="COMPLETE_INVESTOR_PACKAGE.md">Investment Package</a>
+                <a href="mailto:invest.frmwrx@proton.me">Contact</a>
+                <a href="#technology">Technology</a>
+                <a href="#performance">Performance</a>
+                <a href="#team">Team</a>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 FRMWRX Technologies. All rights reserved. | 14 Patents Pending | AI-Synthesized & Cryptographically Verified Results</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections except hero
+        document.querySelectorAll('.fade-in:not(.hero)').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(section);
+        });
+
+        // Bar chart animation
+        const barChartObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bars = entry.target.querySelectorAll('.bar');
+                    bars.forEach((bar, index) => {
+                        const targetWidth = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = targetWidth;
+                        }, index * 200 + 300);
+                    });
+                    barChartObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        // Observe bar charts for animation
+        document.querySelectorAll('.bar-chart-container').forEach(chart => {
+            barChartObserver.observe(chart);
+        });
+        
+        // Animate blockchain metrics balance bars
+        const balanceBarObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const balanceFills = entry.target.querySelectorAll('.balance-fill');
+                    balanceFills.forEach((fill, index) => {
+                        const targetWidth = fill.style.width;
+                        fill.style.width = '0%';
+                        setTimeout(() => {
+                            fill.style.width = targetWidth;
+                        }, index * 200 + 500);
+                    });
+                    balanceBarObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        // Observe blockchain metrics section
+        const blockchainSection = document.querySelector('.blockchain-metrics');
+        if (blockchainSection) {
+            balanceBarObserver.observe(blockchainSection);
+        }
+    </script>
+</body>
+</html>
