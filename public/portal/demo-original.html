@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacred Nexus Demo - FRMWRX Technologies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fafafa;
+            overflow-x: hidden;
+        }
+
+        /* Header - matching landing page style */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #e5e5e5;
+            z-index: 1000;
+            padding: 0 24px;
+        }
+
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #000;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .status-badge {
+            background: linear-gradient(135deg, #10b981, #0ea5e9);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(16, 185, 129, 0.5); }
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .user-info {
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-secondary {
+            color: #666;
+            background: transparent;
+            border: 1px solid #e5e5e5;
+        }
+
+        .btn-secondary:hover {
+            color: #000;
+            border-color: #ccc;
+            background: #f8f9fa;
+        }
+
+        /* Main Dashboard */
+        .dashboard {
+            padding-top: 80px;
+            min-height: 100vh;
+            background: #f8f9fa;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 24px;
+        }
+
+        /* Performance Header */
+        .performance-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .performance-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 1px solid #0ea5e9;
+            color: #0369a1;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            animation: pulse 2s infinite;
+        }
+
+        .performance-title {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #000 0%, #333 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .performance-subtitle {
+            font-size: 18px;
+            color: #666;
+        }
+
+        /* Visualization Container */
+        .visualization-container {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            height: 600px;
+        }
+
+        .viz-header {
+            margin-bottom: 24px;
+        }
+
+        .viz-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #000;
+        }
+
+        .viz-subtitle {
+            color: #666;
+            font-size: 16px;
+        }
+
+        #nodeCanvas {
+            width: 100%;
+            height: calc(100% - 80px);
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 12px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Metrics Panel */
+        .metrics-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Real-time Stats Card */
+        .stats-card {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .validated-badge {
+            position: absolute;
+            top: -10px;
+            right: 24px;
+            background: #10b981;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stats-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #000;
+        }
+
+        .stat-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            background: linear-gradient(135deg, #10b981, #0ea5e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-change {
+            font-size: 14px;
+            color: #10b981;
+            font-weight: 500;
+        }
+
+        /* Transaction Feed */
+        .transaction-feed {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            height: 340px;
+            overflow: hidden;
+        }
+
+        .feed-header {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .transactions-list {
+            height: calc(100% - 48px);
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .transaction-item {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 1px solid #0ea5e9;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+            animation: slideIn 0.3s ease-out;
+            transition: all 0.2s ease;
+        }
+
+        .transaction-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .tx-hash {
+            color: #0369a1;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .tx-details {
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+        }
+
+        .tx-amount {
+            font-weight: 600;
+            color: #000;
+        }
+
+        /* Performance Chart */
+        .performance-chart {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            height: 220px;
+        }
+
+        .chart-header {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        #performanceChart {
+            width: 100%;
+            height: calc(100% - 48px);
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 32px;
+            background: linear-gradient(135deg, #10b981, #0ea5e9);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid #f0f9ff;
+            border-top: 3px solid #10b981;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 24px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #000 0%, #333 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .loading-subtext {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* Scrollbar Styling */
+        .transactions-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .transactions-list::-webkit-scrollbar-track {
+            background: #f0f9ff;
+            border-radius: 4px;
+        }
+
+        .transactions-list::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #10b981, #0ea5e9);
+            border-radius: 4px;
+            min-height: 30px;
+        }
+
+        .transactions-list::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #0ea5e9, #10b981);
+        }
+        
+        /* General Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #10b981, #0ea5e9);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #0ea5e9, #10b981);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .visualization-container {
+                height: 500px;
+            }
+            
+            .metrics-panel {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                flex-wrap: wrap;
+                height: auto;
+                padding: 16px 0;
+            }
+            
+            .user-info {
+                display: none;
+            }
+            
+            .performance-title {
+                font-size: 32px;
+            }
+            
+            .dashboard-container {
+                padding: 16px;
+            }
+            
+            .visualization-container,
+            .stats-card,
+            .transaction-feed,
+            .performance-chart {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-logo">SN</div>
+            <div class="loading-text">Initializing Sacred Nexus</div>
+            <div class="loading-subtext">Connecting to 32 sacred nodes...</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo-section">
+                <a href="../index.html" class="logo">FRMWRX</a>
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    LIVE DEMO
+                </div>
+            </div>
+            <div class="header-actions">
+
+                <span class="user-info" id="userInfo"></span>
+                <a href="../index.html" class="btn btn-secondary">Exit Demo</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Dashboard -->
+    <main class="dashboard">
+        <div class="dashboard-container">
+            <!-- Performance Header -->
+            <div class="performance-header">
+                <div class="performance-badge">Real-time Performance Monitoring</div>
+                <h1 class="performance-title">Sacred Nexus Live Demo</h1>
+                <p class="performance-subtitle">Experience the future of blockchain technology with 71,347 TPS</p>
+            </div>
+
+            <!-- Visualization Area -->
+            <div class="visualization-container">
+                <div class="viz-header">
+                    <h2 class="viz-title">Sacred Geometry Network</h2>
+                    <p class="viz-subtitle">32 Sacred Nodes • Real-time Transaction Flow</p>
+                </div>
+                <canvas id="nodeCanvas"></canvas>
+            </div>
+
+            <!-- Metrics Panel -->
+            <div class="metrics-panel">
+                <!-- Real-time Stats -->
+                <div class="stats-card">
+                    <div class="validated-badge">Verified</div>
+                    <h3>Live Performance Metrics</h3>
+                    <div class="stat-item">
+                        <div class="stat-label">Transactions Per Second</div>
+                        <div class="stat-value" id="tpsValue">0</div>
+                        <div class="stat-change">Target: 71,347 TPS</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Average Latency</div>
+                        <div class="stat-value" id="latencyValue">0ms</div>
+                        <div class="stat-change">Target: 0.7ms</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Active Nodes</div>
+                        <div class="stat-value" id="nodesValue">32</div>
+                        <div class="stat-change">All nodes operational</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Energy Efficiency</div>
+                        <div class="stat-value" id="energyValue">99.1%</div>
+                        <div class="stat-change">vs. traditional PoW</div>
+                    </div>
+                </div>
+
+                <!-- Transaction Feed -->
+                <div class="transaction-feed">
+                    <h3 class="feed-header">Recent Transactions</h3>
+                    <div class="transactions-list" id="transactionsList"></div>
+                </div>
+
+                <!-- Performance Chart -->
+                <div class="performance-chart">
+                    <h3 class="chart-header">TPS Performance (Last 60s)</h3>
+                    <canvas id="performanceChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/network-simulation.js"></script>
+    <script>
+        // Check authentication
+        const accessData = JSON.parse(sessionStorage.getItem('sacredNexusAccess') || '{}');
+        if (!accessData.authorized) {
+            window.location.href = 'index.html';
+        }
+
+        // Display user info
+        document.getElementById('userInfo').textContent = `${accessData.email} • ${accessData.company}`;
+
+        // Initialize demo after load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                    initializeDemo();
+                }, 500);
+            }, 2000);
+        });
+
+        // Demo initialization
+        function initializeDemo() {
+            // Initialize canvas
+            const canvas = document.getElementById('nodeCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            function resizeCanvas() {
+                canvas.width = canvas.offsetWidth;
+                canvas.height = canvas.offsetHeight;
+            }
+            
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            // Sacred Nodes Configuration
+            const nodes = [];
+            const nodeCount = 32;
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = Math.min(canvas.width, canvas.height) * 0.35;
+
+            // Create nodes in sacred geometry pattern
+            for (let i = 0; i < nodeCount; i++) {
+                const angle = (i / nodeCount) * Math.PI * 2;
+                nodes.push({
+                    x: centerX + Math.cos(angle) * radius,
+                    y: centerY + Math.sin(angle) * radius,
+                    id: i,
+                    active: false,
+                    connections: []
+                });
+            }
+
+            // Animation variables
+            let animationFrame;
+            let transactions = [];
+            let tpsHistory = [];
+            let currentTPS = 0;
+            let connectionPulses = []; // For smoother connection animations
+
+            // Draw functions
+            function drawNodes() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Draw sacred geometry connections
+                ctx.strokeStyle = 'rgba(14, 165, 233, 0.1)';
+                ctx.lineWidth = 1;
+                
+                // Draw full mesh connection (each node to every other node)
+for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x, nodes[i].y);
+        ctx.lineTo(nodes[j].x, nodes[j].y);
+        ctx.strokeStyle = 'rgba(14, 165, 233, 0.1)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+    }
+}
+
+                // Draw connection pulses for active transactions
+                connectionPulses.forEach(pulse => {
+                    const gradient = ctx.createLinearGradient(
+                        pulse.fromNode.x, pulse.fromNode.y,
+                        pulse.toNode.x, pulse.toNode.y
+                    );
+                    
+                    // Create animated gradient based on pulse progress
+                    const gradientOffset = pulse.progress;
+                    gradient.addColorStop(Math.max(0, gradientOffset - 0.3), 'rgba(16, 185, 129, 0)');
+                    gradient.addColorStop(gradientOffset, 'rgba(14, 165, 233, 0.8)');
+                    gradient.addColorStop(Math.min(1, gradientOffset + 0.3), 'rgba(16, 185, 129, 0)');
+                    
+                    ctx.strokeStyle = gradient;
+                    ctx.lineWidth = 3 * (1 - Math.abs(pulse.progress - 0.5) * 2); // Pulse effect
+                    ctx.beginPath();
+                    ctx.moveTo(pulse.fromNode.x, pulse.fromNode.y);
+                    ctx.lineTo(pulse.toNode.x, pulse.toNode.y);
+                    ctx.stroke();
+                });
+
+                // Draw nodes with enhanced active state
+                nodes.forEach(node => {
+                    // Calculate pulse effect for active nodes
+                    const pulseTime = Date.now() * 0.003;
+                    const pulseFactor = node.active ? 1 + Math.sin(pulseTime) * 0.2 : 1;
+                    
+                    // Node glow
+                    if (node.active) {
+                        // Outer glow
+                        const outerGlow = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, 30 * pulseFactor);
+                        outerGlow.addColorStop(0, 'rgba(16, 185, 129, 0.2)');
+                        outerGlow.addColorStop(0.5, 'rgba(14, 165, 233, 0.1)');
+                        outerGlow.addColorStop(1, 'rgba(14, 165, 233, 0)');
+                        ctx.fillStyle = outerGlow;
+                        ctx.beginPath();
+                        ctx.arc(node.x, node.y, 30 * pulseFactor, 0, Math.PI * 2);
+                        ctx.fill();
+                        
+                        // Inner glow
+                        const innerGlow = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, 15 * pulseFactor);
+                        innerGlow.addColorStop(0, 'rgba(16, 185, 129, 0.6)');
+                        innerGlow.addColorStop(1, 'rgba(16, 185, 129, 0)');
+                        ctx.fillStyle = innerGlow;
+                        ctx.beginPath();
+                        ctx.arc(node.x, node.y, 15 * pulseFactor, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                    
+                    // Node body
+                    const nodeSize = node.active ? 12 * pulseFactor : 8;
+                    const nodeGradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, nodeSize);
+                    if (node.active) {
+                        nodeGradient.addColorStop(0, '#fff');
+                        nodeGradient.addColorStop(0.3, '#10b981');
+                        nodeGradient.addColorStop(1, '#0ea5e9');
+                    } else {
+                        nodeGradient.addColorStop(0, 'rgba(16, 185, 129, 0.8)');
+                        nodeGradient.addColorStop(1, 'rgba(14, 165, 233, 0.6)');
+                    }
+                    
+                    ctx.fillStyle = nodeGradient;
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, nodeSize, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Node border
+                    ctx.strokeStyle = node.active ? '#fff' : 'rgba(255, 255, 255, 0.5)';
+                    ctx.lineWidth = node.active ? 3 : 2;
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, nodeSize, 0, Math.PI * 2);
+                    ctx.stroke();
+                    
+                    // Node center dot
+                    ctx.fillStyle = node.active ? '#fff' : 'rgba(255, 255, 255, 0.7)';
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, 2, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+
+                // Draw transactions with enhanced visibility
+                transactions.forEach(tx => {
+                    // Skip trail - just draw the transaction dot
+                    
+                    // Main transaction glow
+                    const gradient = ctx.createRadialGradient(tx.x, tx.y, 0, tx.x, tx.y, 15);
+                    gradient.addColorStop(0, `rgba(16, 185, 129, ${tx.opacity * 0.8})`);
+                    gradient.addColorStop(0.5, `rgba(14, 165, 233, ${tx.opacity * 0.4})`);
+                    gradient.addColorStop(1, `rgba(14, 165, 233, 0)`);
+                    
+                    ctx.fillStyle = gradient;
+                    ctx.beginPath();
+                    ctx.arc(tx.x, tx.y, 15, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Transaction core with pulsing effect
+                    const pulseSize = 4 + Math.sin(Date.now() * 0.01 + tx.id) * 1;
+                    ctx.fillStyle = `rgba(255, 255, 255, ${tx.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(tx.x, tx.y, pulseSize, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Outer ring
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${tx.opacity * 0.5})`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.arc(tx.x, tx.y, 8, 0, Math.PI * 2);
+                    ctx.stroke();
+                });
+            }
+            
+            // Update functions
+            function updateMetrics() {
+                // Simulate TPS ramping up
+                const targetTPS = 71347;
+                currentTPS = Math.min(currentTPS + Math.random() * 5000, targetTPS);
+                
+                document.getElementById('tpsValue').textContent = Math.floor(currentTPS).toLocaleString();
+                document.getElementById('latencyValue').textContent = (0.7 + Math.random() * 0.3).toFixed(1) + 'ms';
+                
+                // Update TPS history
+                tpsHistory.push(currentTPS);
+                if (tpsHistory.length > 60) tpsHistory.shift();
+            }
+
+            function addTransaction() {
+                const fromNode = nodes[Math.floor(Math.random() * nodeCount)];
+                const toNode = nodes[Math.floor(Math.random() * nodeCount)];
+                
+                // Ensure we don't select the same node
+                if (fromNode === toNode) return;
+                
+                fromNode.active = true;
+                toNode.active = true;
+                
+                // Add connection pulse
+                connectionPulses.push({
+                    fromNode: fromNode,
+                    toNode: toNode,
+                    progress: 0,
+                    speed: 0.02
+                });
+                
+                setTimeout(() => {
+                    fromNode.active = false;
+                    toNode.active = false;
+                }, 500);
+
+                // Add to transaction feed
+                const txHash = '0x' + Array.from({length: 8}, () => Math.floor(Math.random() * 16).toString(16)).join('');
+                const amount = (Math.random() * 1000).toFixed(2);
+                
+                const txElement = document.createElement('div');
+                txElement.className = 'transaction-item';
+                txElement.innerHTML = `
+                    <div class="tx-hash">${txHash}</div>
+                    <div class="tx-details">
+                        <span class="tx-amount">${amount} SACRED</span>
+                        <span style="color: #555; font-weight: 500;">${new Date().toLocaleTimeString()}</span>
+                    </div>
+                `;
+                
+                const txList = document.getElementById('transactionsList');
+                txList.insertBefore(txElement, txList.firstChild);
+                
+                // Keep the scroll at the top to show newest transactions
+                txList.scrollTop = 0;
+                
+                // Limit transaction history
+                while (txList.children.length > 10) {
+                    txList.removeChild(txList.lastChild);
+                }
+
+                // Add visual transaction - FIXED to travel between nodes properly
+                transactions.push({
+                    id: Date.now() + Math.random(),
+                    fromNode: fromNode,
+                    toNode: toNode,
+                    x: fromNode.x,
+                    y: fromNode.y,
+                    progress: 0,
+                    opacity: 1
+                });
+            }
+
+            // Animation loop
+            function animate() {
+                drawNodes();
+
+                // Update connection pulses
+                connectionPulses = connectionPulses.filter(pulse => {
+                    pulse.progress += pulse.speed;
+                    return pulse.progress <= 1;
+                });
+
+                // Update transactions - FIXED to stop at target node
+                transactions = transactions.filter(tx => {
+                    // Update position along the path
+                    tx.progress += 0.02; // Fixed speed progress
+                    
+                    if (tx.progress < 1) {
+                        // Interpolate position between nodes
+                        tx.x = tx.fromNode.x + (tx.toNode.x - tx.fromNode.x) * tx.progress;
+                        tx.y = tx.fromNode.y + (tx.toNode.y - tx.fromNode.y) * tx.progress;
+                    } else {
+                        // Reached target - start fading
+                        tx.x = tx.toNode.x;
+                        tx.y = tx.toNode.y;
+                        tx.opacity -= 0.05;
+                    }
+                    
+                    return tx.opacity > 0;
+                });
+
+                animationFrame = requestAnimationFrame(animate);
+            }
+
+            // Start simulation
+            animate();
+            setInterval(updateMetrics, 1000);
+            
+            // Improved transaction spawning for better visibility
+            let transactionSpawnTimer = 0;
+            setInterval(() => {
+                transactionSpawnTimer += 50; // Update every 50ms
+                
+                // Calculate spawn rate based on current TPS
+                const spawnInterval = Math.max(100, 1000 - (currentTPS / 100)); // Faster spawn as TPS increases
+                
+                if (transactionSpawnTimer >= spawnInterval) {
+                    transactionSpawnTimer = 0;
+                    
+                    // Spawn 1-3 transactions at once for burst effect
+                    const burstSize = Math.floor(Math.random() * 3) + 1;
+                    for (let i = 0; i < burstSize; i++) {
+                        setTimeout(() => addTransaction(), i * 50);
+                    }
+                }
+            }, 50);
+
+            // Initialize performance chart
+            const chartCanvas = document.getElementById('performanceChart');
+            const chartCtx = chartCanvas.getContext('2d');
+            
+            function drawChart() {
+                chartCanvas.width = chartCanvas.offsetWidth;
+                chartCanvas.height = chartCanvas.offsetHeight;
+                
+                if (tpsHistory.length > 1) {
+                    chartCtx.clearRect(0, 0, chartCanvas.width, chartCanvas.height);
+                    
+                    // Create gradient for the line
+                    const gradient = chartCtx.createLinearGradient(0, 0, chartCanvas.width, 0);
+                    gradient.addColorStop(0, '#10b981');
+                    gradient.addColorStop(0.5, '#0ea5e9');
+                    gradient.addColorStop(1, '#10b981');
+                    
+                    // Draw filled area
+                    chartCtx.fillStyle = 'rgba(16, 185, 129, 0.1)';
+                    chartCtx.beginPath();
+                    chartCtx.moveTo(0, chartCanvas.height);
+                    
+                    tpsHistory.forEach((tps, i) => {
+                        const x = (i / (tpsHistory.length - 1)) * chartCanvas.width;
+                        const y = chartCanvas.height - (tps / 71347) * chartCanvas.height;
+                        chartCtx.lineTo(x, y);
+                    });
+                    
+                    chartCtx.lineTo(chartCanvas.width, chartCanvas.height);
+                    chartCtx.closePath();
+                    chartCtx.fill();
+                    
+                    // Draw line
+                    chartCtx.strokeStyle = gradient;
+                    chartCtx.lineWidth = 3;
+                    chartCtx.beginPath();
+                    
+                    tpsHistory.forEach((tps, i) => {
+                        const x = (i / (tpsHistory.length - 1)) * chartCanvas.width;
+                        const y = chartCanvas.height - (tps / 71347) * chartCanvas.height;
+                        
+                        if (i === 0) {
+                            chartCtx.moveTo(x, y);
+                        } else {
+                            chartCtx.lineTo(x, y);
+                        }
+                    });
+                    
+                    chartCtx.stroke();
+                    
+                    // Draw current value indicator
+                    if (tpsHistory.length > 0) {
+                        const lastTPS = tpsHistory[tpsHistory.length - 1];
+                        const lastX = chartCanvas.width;
+                        const lastY = chartCanvas.height - (lastTPS / 71347) * chartCanvas.height;
+                        
+                        // Draw glowing dot at current position
+                        chartCtx.beginPath();
+                        chartCtx.arc(lastX, lastY, 6, 0, Math.PI * 2);
+                        chartCtx.fillStyle = '#10b981';
+                        chartCtx.fill();
+                        
+                        chartCtx.beginPath();
+                        chartCtx.arc(lastX, lastY, 3, 0, Math.PI * 2);
+                        chartCtx.fillStyle = '#fff';
+                        chartCtx.fill();
+                    }
+                }
+            }
+            
+            setInterval(drawChart, 1000);
+        }
+
+        // Cleanup on exit
+        window.addEventListener('beforeunload', () => {
+            sessionStorage.removeItem('sacredNexusAccess');
+        });
+    </script>
+</body>
+</html>

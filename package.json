@@ -1,0 +1,24 @@
+{
+  "name": "frmwrx-investor-portal",
+  "version": "1.0.0",
+  "description": "FRMWRX Technologies investor portal showcasing breakthrough performance and investment opportunity",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx http-server public -p 8080 -o",
+    "dev": "npx http-server public -p 8080 -c-1",
+    "build": "echo 'Static site - no build required'"
+  },
+  "keywords": [
+    "frmwrx",
+    "blockchain",
+    "sacred-nexus",
+    "investment",
+    "breakthrough-technology"
+  ],
+  "author": "Joshua Kenny",
+  "license": "Proprietary",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FRMWRX/investor-portal.git"
+  }
+}

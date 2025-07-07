@@ -1,0 +1,12 @@
+\contentsline {section}{\numberline {1}Executive Summary}{2}{section.1}%
+\contentsline {section}{\numberline {2}Validated Performance Results}{2}{section.2}%
+\contentsline {section}{\numberline {3}Market Opportunity}{2}{section.3}%
+\contentsline {section}{\numberline {4}Technical Architecture}{3}{section.4}%
+\contentsline {section}{\numberline {5}Intellectual Property \& Competitive Moat}{4}{section.5}%
+\contentsline {section}{\numberline {6}Financial Projections}{4}{section.6}%
+\contentsline {section}{\numberline {7}Risk Assessment \& Mitigation}{4}{section.7}%
+\contentsline {section}{\numberline {8}Investment Terms \& Use of Funds}{5}{section.8}%
+\contentsline {section}{\numberline {9}Management Team}{5}{section.9}%
+\contentsline {section}{\numberline {10}Validation \& Evidence Package}{6}{section.10}%
+\contentsline {section}{\numberline {11}Immediate Next Steps}{6}{section.11}%
+\contentsline {section}{\numberline {12}Investment Summary}{7}{section.12}%

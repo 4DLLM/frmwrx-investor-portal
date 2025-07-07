@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacred Nexus Blockchain Dashboard</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard">
+        <header class="dashboard-header">
+            <div class="logo">
+                <img src="../j_kenny.png" alt="Sacred Nexus Logo">
+                <h1>Sacred Nexus Blockchain Dashboard</h1>
+            </div>
+            <div class="status-indicators">
+                <div class="status active">Network: Online</div>
+                <div class="status">Consensus: Active</div>
+            </div>
+        </header>
+        
+        <main class="dashboard-main">
+            <section class="visualization">
+                <canvas id="networkCanvas"></canvas>
+                <div class="visualization-controls">
+                    <button id="resetView">Reset View</button>
+                    <button id="toggleLabels">Show Labels</button>
+                </div>
+            </section>
+            
+            <aside class="metrics-panel">
+                <div class="metric-card">
+                    <h3>Network Performance</h3>
+                    <div class="metric">
+                        <span class="label">Transactions/s</span>
+                        <span class="value" id="tpsMetric">10,247</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">Latency</span>
+                        <span class="value" id="latencyMetric">48ms</span>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <h3>Resource Efficiency</h3>
+                    <div class="metric">
+                        <span class="label">Energy/TX</span>
+                        <span class="value" id="energyMetric">0.0001 kWh</span>
+                    </div>
+                    <div class="metric">
+                        <span class="label">CPU Utilization</span>
+                        <span class="value" id="cpuMetric">42%</span>
+                    </div>
+                </div>
+                
+                <div class="benefits-section">
+                    <h3>Key Advantages</h3>
+                    <ul>
+                        <li>⚡ 1000x faster than traditional blockchains</li>
+                        <li>🌿 99.999% energy reduction</li>
+                        <li>🛡️ Quantum-resistant security</li>
+                        <li>🧩 Geometric consensus efficiency</li>
+                    </ul>
+                </div>
+            </aside>
+        </main>
+        
+        <footer class="dashboard-footer">
+            <p>Sacred Nexus Blockchain Network | Enterprise Edition v2.1</p>
+            <p>Real-time Monitoring | Last updated: <span id="timestamp"></span></p>
+        </footer>
+    </div>
+    
+    <script src="../js/network-simulation.js"></script>
+</body>
+</html>

@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacred Nexus Applications - FRMWRX Technologies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fafafa;
+            scroll-behavior: smooth;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Background Logo Watermark - Removed */
+        .background-logo {
+            display: none;
+        }
+
+        /* Header - Consistent with main site */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #e5e5e5;
+            z-index: 1000;
+            padding: 0 24px;
+        }
+
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #000;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+        }
+
+        .nav-links a.active {
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #10b981, #0ea5e9);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 80px auto 0;
+            padding: 40px 24px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 80px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .validation-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 1px solid #0ea5e9;
+            color: #0369a1;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero-title {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #000 0%, #333 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 48px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Industry Cards Grid */
+        .industry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .industry-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .industry-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #10b981, #0ea5e9);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .industry-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .industry-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-color: #10b981;
+        }
+
+        .industry-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .industry-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #000;
+        }
+
+        .industry-card p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Detail View */
+        .detail-section {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .detail-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .detail-title {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #10b981, #0ea5e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .detail-description {
+            font-size: 18px;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Comparison Table */
+        .comparison-container {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            overflow-x: auto;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .comparison-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .comparison-table td {
+            font-size: 15px;
+            color: #666;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .sacred-nexus-cell {
+            font-weight: 700;
+            background: linear-gradient(135deg, #10b981, #0ea5e9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .win-indicator {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 1px solid #0ea5e9;
+            color: #0369a1;
+            padding: 12px;
+            text-align: center;
+            font-weight: 600;
+            border-radius: 8px;
+            margin-top: 16px;
+        }
+
+        /* Visualization Canvas */
+        .visualization-container {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .visualization-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #000;
+            text-align: center;
+        }
+
+        canvas {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 12px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Back Button */
+        .back-button {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 40px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateX(-4px);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .industry-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-container {
+                padding: 20px;
+            }
+            
+            .comparison-table {
+                font-size: 14px;
+            }
+            
+            .comparison-table th,
+            .comparison-table td {
+                padding: 12px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Logo Watermark -->
+    <img src="j_kenny.png" alt="FRMWRX Background" class="background-logo">
+    
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">FRMWRX</a>
+            <ul class="nav-links">
+                <li><a href="index.html#technology">Technology</a></li>
+                <li><a href="index.html#performance">Performance</a></li>
+                <li><a href="applications.html" class="active">Applications</a></li>
+                <li><a href="index.html#team">Team</a></li>
+                <li><a href="index.html#investment">Investment</a></li>
+            </ul>
+            <a href="portal/index.html" class="btn btn-primary">Demo Portal</a>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Home Section -->
+        <section id="home-section">
+            <div class="hero-section">
+                <div class="validation-badge">Real-World Impact Analysis</div>
+                <h1 class="hero-title">Sacred Nexus: Powering the Future</h1>
+                <p class="hero-subtitle">
+                    Experience how 71,347 TPS transforms entire industries. Our revolutionary performance 
+                    unlocks applications previously impossible on blockchain. Select an industry to see Sacred Nexus 
+                    dominate the competition.
+                </p>
+            </div>
+
+            <div class="industry-grid">
+                <div class="industry-card" data-industry="defi">
+                    <div class="industry-icon">💹</div>
+                    <h3>High-Frequency Finance</h3>
+                    <p>Enable microsecond trading, instant settlements, and true DeFi scalability that matches traditional finance.</p>
+                </div>
+                
+                <div class="industry-card" data-industry="supply-chain">
+                    <div class="industry-icon">📦</div>
+                    <h3>Global Supply Chain</h3>
+                    <p>Track millions of packages in real-time with immutable verification at every checkpoint.</p>
+                </div>
+                
+                <div class="industry-card" data-industry="gaming">
+                    <div class="industry-icon">🎮</div>
+                    <h3>Gaming & Metaverse</h3>
+                    <p>Support millions of concurrent players with instant item transfers and seamless economies.</p>
+                </div>
+                
+                <div class="industry-card" data-industry="iot">
+                    <div class="industry-icon">🌐</div>
+                    <h3>IoT Networks</h3>
+                    <p>Process data from billions of devices with sub-second consensus and minimal energy use.</p>
+                </div>
+                
+                <div class="industry-card" data-industry="healthcare">
+                    <div class="industry-icon">🏥</div>
+                    <h3>Healthcare Systems</h3>
+                    <p>Secure patient records with instant access, interoperability, and HIPAA-compliant privacy.</p>
+                </div>
+                
+                <div class="industry-card" data-industry="social-media">
+                    <div class="industry-icon">🌍</div>
+                    <h3>Social Networks</h3>
+                    <p>Decentralized platforms that scale to billions while maintaining true user ownership.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detail Sections -->
+        <!-- DeFi Section -->
+        <section id="defi-section" class="detail-section">
+            <a href="#" class="back-button">← Back to Industries</a>
+            
+            <div class="detail-header">
+                <h2 class="detail-title">High-Frequency Finance Revolution</h2>
+                <p class="detail-description" id="defi-description">
+                    Sacred Nexus enables true institutional-grade DeFi with microsecond latency and massive throughput. 
+                    With 72,028 TPS and sub-second finality, we deliver the performance needed for high-frequency trading, 
+                    instant settlements, and complex financial instruments on-chain.
+                </p>
+            </div>
+
+            <div class="comparison-container">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Sacred Nexus</th>
+                            <th>Solana</th>
+                            <th>Sei Network</th>
+                            <th>Injective</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Transactions per Second</td>
+                            <td class="sacred-nexus-cell">72,028</td>
+                            <td>65,000+</td>
+                            <td>~20,000</td>
+                            <td>~10,000</td>
+                        </tr>
+                        <tr>
+                            <td>Finality Time</td>
+                            <td class="sacred-nexus-cell">~0.9s</td>
+                            <td>~2.5s</td>
+                            <td>&lt;1s</td>
+                            <td>1s</td>
+                        </tr>
+                        <tr>
+                            <td>Latency</td>
+                            <td class="sacred-nexus-cell">Ultra-low</td>
+                            <td>Low</td>
+                            <td>Very Low</td>
+                            <td>Medium</td>
+                        </tr>
+                        <tr>
+                            <td>Core Strength</td>
+                            <td class="sacred-nexus-cell">Internal micro-ledger</td>
+                            <td>High throughput</td>
+                            <td>On-chain orderbook</td>
+                            <td>DeFi Derivatives</td>
+                        </tr>
+                        <tr>
+                            <td>Decentralization Level</td>
+                            <td class="sacred-nexus-cell">Hybrid</td>
+                            <td>Medium</td>
+                            <td>Medium</td>
+                            <td>High</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="win-indicator">
+                    ✅ Nexus wins on speed and low-latency consensus
+                </div>
+            </div>
+
+            <div class="visualization-container">
+                <h3 class="visualization-title">Live Transaction Flow Comparison</h3>
+                <canvas id="defiCanvas"></canvas>
+            </div>
+        </section>
+
+        <!-- Supply Chain Section -->
+        <section id="supply-chain-section" class="detail-section">
+            <a href="#" class="back-button">← Back to Industries</a>
+            
+            <div class="detail-header">
+                <h2 class="detail-title">Global Supply Chain Transformation</h2>
+                <p class="detail-description">
+                    Track every package, verify every handoff, authenticate every product - all in real-time. 
+                    Sacred Nexus processes more supply chain events per second than competitors process in minutes.
+                </p>
+            </div>
+
+            <div class="comparison-container">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Network</th>
+                            <th>TPS</th>
+                            <th>Enterprise Ready</th>
+                            <th>Real-time Tracking</th>
+                            <th>Cost Efficiency</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Sacred Nexus</strong></td>
+                            <td class="sacred-nexus-cell">71,347</td>
+                            <td class="sacred-nexus-cell">Full Integration</td>
+                            <td class="sacred-nexus-cell">Instant</td>
+                            <td class="sacred-nexus-cell">99% Lower</td>
+                        </tr>
+                        <tr>
+                            <td>VeChain</td>
+                            <td>10,000</td>
+                            <td>Yes</td>
+                            <td>Batch Updates</td>
+                            <td>Medium</td>
+                        </tr>
+                        <tr>
+                            <td>IBM Food Trust</td>
+                            <td>1,000</td>
+                            <td>Enterprise Only</td>
+                            <td>Delayed</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td>OriginTrail</td>
+                            <td>2,000</td>
+                            <td>Growing</td>
+                            <td>Near Real-time</td>
+                            <td>Medium</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="win-indicator">
+                    ✅ Sacred Nexus: Real-time verification for millions of simultaneous shipments
+                </div>
+            </div>
+
+            <div class="visualization-container">
+                <h3 class="visualization-title">Supply Chain Event Processing</h3>
+                <canvas id="supplyCanvas"></canvas>
+            </div>
+        </section>
+
+        <!-- Gaming Section -->
+        <section id="gaming-section" class="detail-section">
+            <a href="#" class="back-button">← Back to Industries</a>
+            
+            <div class="detail-header">
+                <h2 class="detail-title">Gaming & Metaverse at Scale</h2>
+                <p class="detail-description">
+                    Finally, blockchain gaming without compromises. Instant item trades, seamless marketplaces, 
+                    and economies that scale to millions of players simultaneously.
+                </p>
+            </div>
+
+            <div class="comparison-container">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Network</th>
+                            <th>TPS</th>
+                            <th>Item Transfer Speed</th>
+                            <th>Player Capacity</th>
+                            <th>True Ownership</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Sacred Nexus</strong></td>
+                            <td class="sacred-nexus-cell">71,347</td>
+                            <td class="sacred-nexus-cell">Instant</td>
+                            <td class="sacred-nexus-cell">Unlimited</td>
+                            <td class="sacred-nexus-cell">Full NFT Support</td>
+                        </tr>
+                        <tr>
+                            <td>Immutable X</td>
+                            <td>9,000</td>
+                            <td>~1s</td>
+                            <td>100,000s</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Polygon</td>
+                            <td>7,000</td>
+                            <td>2-3s</td>
+                            <td>10,000s</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Ronin</td>
+                            <td>2,000</td>
+                            <td>3-5s</td>
+                            <td>Limited</td>
+                            <td>Game-Specific</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="win-indicator">
+                    ✅ Sacred Nexus: AAA gaming performance with Web3 ownership
+                </div>
+            </div>
+
+            <div class="visualization-container">
+                <h3 class="visualization-title">In-Game Transaction Processing</h3>
+                <canvas id="gamingCanvas"></canvas>
+            </div>
+        </section>
+
+        <!-- IoT Section -->
+        <section id="iot-section" class="detail-section">
+            <a href="#" class="back-button">← Back to Industries</a>
+            
+            <div class="detail-header">
+                <h2 class="detail-title">IoT Network Revolution</h2>
+                <p class="detail-description">
+                    Connect billions of devices with guaranteed data integrity and minimal energy consumption. 
+                    Sacred Nexus processes IoT data streams that would overwhelm traditional blockchains.
+                </p>
+            </div>
+
+            <div class="comparison-container">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Network</th>
+                            <th>TPS</th>
+                            <th>Energy Efficiency</th>
+                            <th>Device Support</th>
+                            <th>Data Integrity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Sacred Nexus</strong></td>
+                            <td class="sacred-nexus-cell">71,347</td>
+                            <td class="sacred-nexus-cell">99.1% Savings</td>
+                            <td class="sacred-nexus-cell">Billions</td>
+                            <td class="sacred-nexus-cell">Cryptographic</td>
+                        </tr>
+                        <tr>
+                            <td>IOTA</td>
+                            <td>1,000</td>
+                            <td>High</td>
+                            <td>Millions</td>
+                            <td>Tangle-Based</td>
+                        </tr>
+                        <tr>
+                            <td>Helium</td>
+                            <td>100</td>
+                            <td>Medium</td>
+                            <td>Thousands</td>
+                            <td>LoRaWAN</td>
+                        </tr>
+                        <tr>
+                            <td>IoTeX</td>
+                            <td>5,000</td>
+                            <td>Good</td>
+                            <td>100,000s</td>
+                            <td>TEE-Enhanced</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="win-indicator">
+                    ✅ Sacred Nexus: Industrial IoT scale with consumer device efficiency
+                </div>
+            </div>
+
+            <div class="visualization-container">
+                <h3 class="visualization-title">IoT Data Stream Processing</h3>
+                <canvas id="iotCanvas"></canvas>
+            </div>
+        </section>
+
+        <!-- Healthcare Section -->
+        <section id="healthcare-section" class="detail-section">
+            <a href="#" class="back-button">← Back to Industries</a>
+            
+            <div class="detail-header">
+                <h2 class="detail-title">Healthcare Data Revolution</h2>
+                <p class="detail-description">
+                    Secure, instant access to patient records across providers. Sacred Nexus enables true 
+                    healthcare interoperability while maintaining HIPAA-compliant privacy at scale.
+                </p>
+            </div>
+
+            <div class="comparison-container">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Network</th>
+                            <th>TPS</th>
+                            <th>HIPAA Ready</th>
+                            <th>Interoperability</th>
+                            <th>Access Speed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Sacred Nexus</strong></td>
+                            <td class="sacred-nexus-cell">71,347</td>
+                            <td class="sacred-nexus-cell">Full Compliance</td>
+                            <td class="sacred-nexus-cell">Universal</td>
+                            <td class="sacred-nexus-cell">Instant</td>
+                        </tr>
+                        <tr>
+                            <td>MediBloc</td>
+                            <td>1,000</td>
+                            <td>Yes</td>
+                            <td>Limited</td>
+                            <td>Seconds</td>
+                        </tr>
+                        <tr>
+                            <td>Solve.Care</td>
+                            <td>500</td>
+                            <td>In Progress</td>
+                            <td>Partner Network</td>
+                            <td>Variable</td>
+                        </tr>
+                        <tr>
+                            <td>BurstIQ</td>
+                            <td>800</td>
+                            <td>Yes</td>
+                            <td>API-Based</td>
+                            <td>Near Real-time</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="win-indicator">
+                    ✅ Sacred Nexus: Hospital-grade performance with patient-controlled privacy
+                </div>
+            </div>
+
+            <div class="visualization-container">
+                <h3 class="visualization-title">Healthcare Record Processing</h3>
+                <canvas id="healthCanvas"></canvas>
+            </div>
+        </section>
+
+        <!-- Social Media Section -->
+        <section id="social-media-section" class="detail-section">
+            <a href="#" class="back-button">← Back to Industries</a>
+            
+            <div class="detail-header">
+                <h2 class="detail-title">Decentralized Social at Scale</h2>
+                <p class="detail-description">
+                    True censorship resistance with the performance of centralized platforms. Sacred Nexus 
+                    enables social networks that scale to billions while preserving user sovereignty.
+                </p>
+            </div>
+
+            <div class="comparison-container">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Network</th>
+                            <th>TPS</th>
+                            <th>User Experience</th>
+                            <th>Censorship Resistance</th>
+                            <th>Content Ownership</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Sacred Nexus</strong></td>
+                            <td class="sacred-nexus-cell">71,347</td>
+                            <td class="sacred-nexus-cell">Web2 Speed</td>
+                            <td class="sacred-nexus-cell">Absolute</td>
+                            <td class="sacred-nexus-cell">User-Controlled</td>
+                        </tr>
+                        <tr>
+                            <td>Lens Protocol</td>
+                            <td>50</td>
+                            <td>Slow</td>
+                            <td>High</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Farcaster</td>
+                            <td>30</td>
+                            <td>Limited</td>
+                            <td>Moderate</td>
+                            <td>Hybrid</td>
+                        </tr>
+                        <tr>
+                            <td>DeSo</td>
+                            <td>100</td>
+                            <td>Improving</td>
+                            <td>High</td>
+                            <td>Yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="win-indicator">
+                    ✅ Sacred Nexus: Twitter-scale performance with Bitcoin-level censorship resistance
+                </div>
+            </div>
+
+            <div class="visualization-container">
+                <h3 class="visualization-title">Social Interaction Processing</h3>
+                <canvas id="socialCanvas"></canvas>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Navigation and routing
+        const homeSection = document.getElementById('home-section');
+        const detailSections = document.querySelectorAll('.detail-section');
+        const industryCards = document.querySelectorAll('.industry-card');
+        const backButtons = document.querySelectorAll('.back-button');
+        
+        // Canvas animation states
+        const animations = new Map();
+        
+        // Industry card click handlers
+        industryCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const industry = card.dataset.industry;
+                showIndustryDetail(industry);
+            });
+        });
+        
+        // Back button handlers
+        backButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                showHome();
+            });
+        });
+        
+        function showHome() {
+            homeSection.style.display = 'block';
+            detailSections.forEach(section => {
+                section.style.display = 'none';
+            });
+            // Stop all animations
+            animations.forEach(anim => cancelAnimationFrame(anim));
+            animations.clear();
+        }
+        
+        function showIndustryDetail(industry) {
+            homeSection.style.display = 'none';
+            detailSections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            const targetSection = document.getElementById(`${industry}-section`);
+            if (targetSection) {
+                targetSection.style.display = 'block';
+                startAnimation(industry);
+            }
+        }
+        
+        // Canvas animations
+        function startAnimation(industry) {
+            const canvasId = `${industry}Canvas`;
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.offsetWidth;
+            canvas.height = 400;
+            
+            // Clear any existing animation
+            if (animations.has(canvasId)) {
+                cancelAnimationFrame(animations.get(canvasId));
+            }
+            
+            // Start industry-specific animation
+            switch(industry) {
+                case 'defi':
+                    animateDeFi(canvas, ctx);
+                    break;
+                case 'supply-chain':
+                    animateSupplyChain(canvas, ctx);
+                    break;
+                case 'gaming':
+                    animateGaming(canvas, ctx);
+                    break;
+                case 'iot':
+                    animateIoT(canvas, ctx);
+                    break;
+                case 'healthcare':
+                    animateHealthcare(canvas, ctx);
+                    break;
+                case 'social-media':
+                    animateSocial(canvas, ctx);
+                    break;
+            }
+        }
+        
+        // Network visualization class
+        class NetworkLane {
+            constructor(name, tps, x, width, color) {
+                this.name = name;
+                this.tps = tps;
+                this.x = x;
+                this.width = width;
+                this.color = color;
+                this.transactions = [];
+                this.maxTPS = 71347; // Sacred Nexus TPS for scaling
+            }
+            
+            update(canvas) {
+                // Add new transactions based on TPS
+                const spawnRate = (this.tps / this.maxTPS) * 0.5;
+                if (Math.random() < spawnRate) {
+                    this.transactions.push({
+                        y: canvas.height,
+                        speed: (this.tps / this.maxTPS) * 8 + 2,
+                        size: this.name.includes('Sacred') ? 8 : 5,
+                        opacity: 1
+                    });
+                }
+                
+                // Update existing transactions
+                this.transactions = this.transactions.filter(tx => {
+                    tx.y -= tx.speed;
+                    tx.opacity = Math.max(0, tx.opacity - 0.01);
+                    return tx.y > -20;
+                });
+            }
+            
+            draw(ctx, canvas) {
+                // Draw lane background
+                ctx.fillStyle = `${this.color}10`;
+                ctx.fillRect(this.x, 0, this.width, canvas.height);
+                
+                // Draw lane border
+                ctx.strokeStyle = `${this.color}30`;
+                ctx.lineWidth = 1;
+                ctx.strokeRect(this.x, 0, this.width, canvas.height);
+                
+                // Draw network name
+                ctx.fillStyle = this.color;
+                ctx.font = '14px -apple-system, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(this.name, this.x + this.width/2, 30);
+                
+                // Draw TPS
+                ctx.font = '20px -apple-system, sans-serif';
+                ctx.fontWeight = '700';
+                ctx.fillText(this.tps.toLocaleString() + ' TPS', this.x + this.width/2, 55);
+                
+                // Draw transactions
+                this.transactions.forEach(tx => {
+                    const gradient = ctx.createRadialGradient(
+                        this.x + this.width/2, tx.y, 0,
+                        this.x + this.width/2, tx.y, tx.size
+                    );
+                    gradient.addColorStop(0, `${this.color}${Math.floor(tx.opacity * 255).toString(16).padStart(2, '0')}`);
+                    gradient.addColorStop(1, `${this.color}00`);
+                    
+                    ctx.fillStyle = gradient;
+                    ctx.beginPath();
+                    ctx.arc(this.x + this.width/2, tx.y, tx.size * 2, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Transaction core
+                    ctx.fillStyle = `${this.color}${Math.floor(tx.opacity * 255).toString(16).padStart(2, '0')}`;
+                    ctx.beginPath();
+                    ctx.arc(this.x + this.width/2, tx.y, tx.size, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+            }
+        }
+        
+        // DeFi Animation
+        function animateDeFi(canvas, ctx) {
+            const lanes = [
+                new NetworkLane('Sacred Nexus', 71347, 0, canvas.width/4, '#10b981'),
+                new NetworkLane('Solana', 65000, canvas.width/4, canvas.width/4, '#9945ff'),
+                new NetworkLane('Ethereum', 15, canvas.width/2, canvas.width/4, '#627eea'),
+                new NetworkLane('Avalanche', 4500, canvas.width*3/4, canvas.width/4, '#e84142')
+            ];
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                lanes.forEach(lane => {
+                    lane.update(canvas);
+                    lane.draw(ctx, canvas);
+                });
+                
+                const animId = requestAnimationFrame(animate);
+                animations.set('defiCanvas', animId);
+            }
+            animate();
+        }
+        
+        // Supply Chain Animation
+        function animateSupplyChain(canvas, ctx) {
+            const lanes = [
+                new NetworkLane('Sacred Nexus', 71347, 0, canvas.width/4, '#10b981'),
+                new NetworkLane('VeChain', 10000, canvas.width/4, canvas.width/4, '#4b8aff'),
+                new NetworkLane('IBM Food Trust', 1000, canvas.width/2, canvas.width/4, '#0062ff'),
+                new NetworkLane('OriginTrail', 2000, canvas.width*3/4, canvas.width/4, '#6b46c1')
+            ];
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                lanes.forEach(lane => {
+                    lane.update(canvas);
+                    lane.draw(ctx, canvas);
+                });
+                
+                const animId = requestAnimationFrame(animate);
+                animations.set('supplyCanvas', animId);
+            }
+            animate();
+        }
+        
+        // Gaming Animation
+        function animateGaming(canvas, ctx) {
+            const lanes = [
+                new NetworkLane('Sacred Nexus', 71347, 0, canvas.width/4, '#10b981'),
+                new NetworkLane('Immutable X', 9000, canvas.width/4, canvas.width/4, '#ff4b4b'),
+                new NetworkLane('Polygon', 7000, canvas.width/2, canvas.width/4, '#8247e5'),
+                new NetworkLane('Ronin', 2000, canvas.width*3/4, canvas.width/4, '#1a73e8')
+            ];
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                lanes.forEach(lane => {
+                    lane.update(canvas);
+                    lane.draw(ctx, canvas);
+                });
+                
+                const animId = requestAnimationFrame(animate);
+                animations.set('gamingCanvas', animId);
+            }
+            animate();
+        }
+        
+        // IoT Animation
+        function animateIoT(canvas, ctx) {
+            const lanes = [
+                new NetworkLane('Sacred Nexus', 71347, 0, canvas.width/4, '#10b981'),
+                new NetworkLane('IOTA', 1000, canvas.width/4, canvas.width/4, '#131f37'),
+                new NetworkLane('Helium', 100, canvas.width/2, canvas.width/4, '#474dff'),
+                new NetworkLane('IoTeX', 5000, canvas.width*3/4, canvas.width/4, '#00d4d5')
+            ];
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                lanes.forEach(lane => {
+                    lane.update(canvas);
+                    lane.draw(ctx, canvas);
+                });
+                
+                const animId = requestAnimationFrame(animate);
+                animations.set('iotCanvas', animId);
+            }
+            animate();
+        }
+        
+        // Healthcare Animation
+        function animateHealthcare(canvas, ctx) {
+            const lanes = [
+                new NetworkLane('Sacred Nexus', 71347, 0, canvas.width/4, '#10b981'),
+                new NetworkLane('MediBloc', 1000, canvas.width/4, canvas.width/4, '#00b0ff'),
+                new NetworkLane('Solve.Care', 500, canvas.width/2, canvas.width/4, '#ff5722'),
+                new NetworkLane('BurstIQ', 800, canvas.width*3/4, canvas.width/4, '#3f51b5')
+            ];
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                lanes.forEach(lane => {
+                    lane.update(canvas);
+                    lane.draw(ctx, canvas);
+                });
+                
+                const animId = requestAnimationFrame(animate);
+                animations.set('healthCanvas', animId);
+            }
+            animate();
+        }
+        
+        // Social Animation
+        function animateSocial(canvas, ctx) {
+            const lanes = [
+                new NetworkLane('Sacred Nexus', 71347, 0, canvas.width/4, '#10b981'),
+                new NetworkLane('Lens Protocol', 50, canvas.width/4, canvas.width/4, '#00501e'),
+                new NetworkLane('Farcaster', 30, canvas.width/2, canvas.width/4, '#855dcd'),
+                new NetworkLane('DeSo', 100, canvas.width*3/4, canvas.width/4, '#5ba358')
+            ];
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                lanes.forEach(lane => {
+                    lane.update(canvas);
+                    lane.draw(ctx, canvas);
+                });
+                
+                const animId = requestAnimationFrame(animate);
+                animations.set('socialCanvas', animId);
+            }
+            animate();
+        }
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            const currentSection = Array.from(detailSections).find(section => 
+                section.style.display !== 'none'
+            );
+            
+            if (currentSection) {
+                const industry = currentSection.id.replace('-section', '');
+                startAnimation(industry);
+            }
+        });
+    </script>
+</body>
+</html>

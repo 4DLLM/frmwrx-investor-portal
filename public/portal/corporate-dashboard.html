@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Network Simulation - Sacred Nexus Enterprise | FRMWRX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif;
+            background: #ffffff;
+            color: #1f2937;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Corporate Header */
+        .corporate-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+            z-index: 1000;
+            padding: 0 32px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-nav {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        .corporate-logo {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1f2937;
+            letter-spacing: -0.5px;
+        }
+
+        .enterprise-badge {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3); }
+            50% { box-shadow: 0 8px 40px rgba(16, 185, 129, 0.5); }
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.8); }
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .performance-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+
+        .tps-display {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tps-label {
+            font-size: 11px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .control-btn {
+            padding: 10px 20px;
+            background: #f9fafb;
+            border: 1px solid #d1d5db;
+            color: #374151;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: #f3f4f6;
+            border-color: #9ca3af;
+            transform: translateY(-1px);
+        }
+
+        /* Main Dashboard */
+        .dashboard-container {
+            padding-top: 88px;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding-left: 32px;
+            padding-right: 32px;
+            padding-bottom: 32px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 16px;
+            color: #1f2937;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: #6b7280;
+            margin-bottom: 32px;
+            font-weight: 500;
+        }
+
+        .performance-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: #d1d5db;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        /* Main Grid Layout */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        /* Network Visualization */
+        .network-container {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .network-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .network-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .network-controls {
+            display: flex;
+            gap: 12px;
+        }
+
+        .network-btn {
+            padding: 8px 16px;
+            background: #f9fafb;
+            border: 1px solid #d1d5db;
+            color: #374151;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .network-btn:hover {
+            background: #f3f4f6;
+            border-color: #9ca3af;
+        }
+
+        #networkCanvas {
+            width: 100%;
+            height: 600px;
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Metrics Panel */
+        .metrics-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Real-time Metrics */
+        .metrics-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .verified-badge {
+            position: absolute;
+            top: -12px;
+            right: 24px;
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metrics-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #1f2937;
+        }
+
+        .metric-item {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .metric-item:hover {
+            border-color: #d1d5db;
+            transform: translateX(4px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .metric-value {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 4px;
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .metric-change {
+            font-size: 13px;
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        /* Transaction Feed */
+        .transaction-feed {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .feed-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1f2937;
+        }
+
+        .transactions-list {
+            height: calc(100% - 60px);
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .transaction-item {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 12px;
+            animation: slideInRight 0.4s ease-out;
+            transition: all 0.3s ease;
+        }
+
+        .transaction-item:hover {
+            border-color: #d1d5db;
+            transform: translateX(4px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .tx-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .tx-hash {
+            color: #06b6d4;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', monospace;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .tx-type {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .tx-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .tx-amount {
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        /* Analytics Chart */
+        .analytics-chart {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            height: 280px;
+        }
+
+        .chart-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1f2937;
+        }
+
+        #analyticsChart {
+            width: 100%;
+            height: calc(100% - 60px);
+            background: #f9fafb;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+
+        /* Bottom Analytics Grid */
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        /* Scrollbar Styling */
+        .transactions-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .transactions-list::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 3px;
+        }
+
+        .transactions-list::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+            border-radius: 3px;
+        }
+
+        .transactions-list::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #059669, #0891b2);
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .loading-logo {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 40px;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+            font-weight: 900;
+            color: white;
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.3);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        .loading-text {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: #1f2937;
+        }
+
+        .loading-subtext {
+            font-size: 16px;
+            color: #6b7280;
+            margin-bottom: 32px;
+        }
+
+        .loading-progress {
+            width: 300px;
+            height: 4px;
+            background: rgba(59, 130, 246, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .loading-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            border-radius: 2px;
+            animation: loading 3s ease-in-out infinite;
+        }
+
+        @keyframes loading {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .metrics-panel {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-nav {
+                padding: 16px 0;
+                flex-wrap: wrap;
+                height: auto;
+            }
+            
+            .performance-indicator {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .dashboard-container {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+            
+            .performance-stats {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-logo">SN</div>
+            <div class="loading-text">Initializing Corporate Network</div>
+            <div class="loading-subtext">Connecting to 75,000 TPS infrastructure...</div>
+            <div class="loading-progress">
+                <div class="loading-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Corporate Header -->
+    <header class="corporate-header">
+        <nav class="header-nav">
+            <div class="corporate-logo">
+                <div class="logo-text">FRMWRX</div>
+                <div class="enterprise-badge">
+                    <span class="status-indicator"></span>
+                    ENTERPRISE LIVE
+                </div>
+            </div>
+            <div class="header-controls">
+                <div class="performance-indicator">
+                    <div class="tps-display" id="headerTPS">0</div>
+                    <div class="tps-label">Transactions/Second</div>
+                </div>
+                <button class="control-btn" id="resetView">Reset Network</button>
+                <button class="control-btn" id="backToHome">Back to Home</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Dashboard -->
+    <main class="dashboard-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="hero-title">Corporate Network Simulation</h1>
+            <p class="hero-subtitle">Sacred Nexus Enterprise Blockchain • 75,000+ TPS Capability</p>
+            
+            <div class="performance-stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="currentTPS">0</div>
+                    <div class="stat-label">Current TPS</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="peakTPS">0</div>
+                    <div class="stat-label">Peak TPS</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalTransactions">0</div>
+                    <div class="stat-label">Total Transactions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="networkUptime">100.0%</div>
+                    <div class="stat-label">Network Uptime</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Network Visualization -->
+            <div class="network-container">
+                <div class="network-header">
+                    <h2 class="network-title">Sacred Nexus Network Topology</h2>
+                    <div class="network-controls">
+                        <button class="network-btn" onclick="setTargetTPS(25000)">25K TPS</button>
+                        <button class="network-btn" onclick="setTargetTPS(50000)">50K TPS</button>
+                        <button class="network-btn" onclick="setTargetTPS(75000)">75K TPS</button>
+                    </div>
+                </div>
+                <canvas id="networkCanvas"></canvas>
+            </div>
+
+            <!-- Metrics Panel -->
+            <div class="metrics-panel">
+                <!-- Real-time Metrics -->
+                <div class="metrics-card">
+                    <div class="verified-badge">Enterprise Verified</div>
+                    <h3 class="metrics-title">Live Performance Metrics</h3>
+                    <div class="metric-item">
+                        <div class="metric-label">Transactions Per Second</div>
+                        <div class="metric-value" id="tpsMetric">0</div>
+                        <div class="metric-change">Target: 75,000 TPS</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">Network Latency</div>
+                        <div class="metric-value" id="latencyMetric">0.7ms</div>
+                        <div class="metric-change">Sub-millisecond performance</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">Energy Efficiency</div>
+                        <div class="metric-value" id="energyMetric">99.1%</div>
+                        <div class="metric-change">vs. traditional PoW</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-label">CPU Utilization</div>
+                        <div class="metric-value" id="cpuMetric">0%</div>
+                        <div class="metric-change">Optimized performance</div>
+                    </div>
+                </div>
+
+                <!-- Transaction Feed -->
+                <div class="transaction-feed">
+                    <h3 class="feed-title">Live Transaction Stream</h3>
+                    <div class="transactions-list" id="transactionsList"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics Grid -->
+        <div class="analytics-grid">
+            <div class="analytics-chart">
+                <h3 class="chart-title">TPS Performance Analytics</h3>
+                <canvas id="analyticsChart"></canvas>
+            </div>
+        </div>
+    </main>
+
+    <!-- Load Corporate Network Simulation -->
+    <script src="../js/corporate-network-simulation.js"></script>
+    
+    <script>
+        // Initialize corporate dashboard
+        let transactionCounter = 0;
+        let startTime = Date.now();
+
+        // Hide loading overlay after initialization
+        window.addEventListener('load', () => {
+            // Wait for simulation to be ready
+            const checkSimulation = () => {
+                if (window.corporateSimulation && window.corporateSimulation.isRunning) {
+                    document.getElementById('loadingOverlay').style.opacity = '0';
+                    setTimeout(() => {
+                        document.getElementById('loadingOverlay').style.display = 'none';
+                        initializeDashboard();
+                    }, 500);
+                } else {
+                    setTimeout(checkSimulation, 100);
+                }
+            };
+            
+            // Start checking after a brief delay
+            setTimeout(checkSimulation, 1000);
+        });
+
+        function initializeDashboard() {
+            // Start transaction feed
+            setInterval(addTransactionToFeed, 150);
+            
+            // Update header TPS
+            setInterval(updateHeaderMetrics, 500);
+            
+            // Initialize analytics chart
+            initializeAnalyticsChart();
+            setInterval(updateAnalyticsChart, 1000);
+        }
+
+        function addTransactionToFeed() {
+            const txTypes = ['Transfer', 'Smart Contract', 'Consensus', 'Validation', 'System'];
+            const txType = txTypes[Math.floor(Math.random() * txTypes.length)];
+            const txHash = '0x' + Array.from({length: 12}, () => 
+                Math.floor(Math.random() * 16).toString(16)).join('');
+            const amount = (Math.random() * 10000).toFixed(2);
+            
+            const txElement = document.createElement('div');
+            txElement.className = 'transaction-item';
+            txElement.innerHTML = `
+                <div class="tx-header">
+                    <div class="tx-hash">${txHash}</div>
+                    <div class="tx-type">${txType}</div>
+                </div>
+                <div class="tx-details">
+                    <span class="tx-amount">${amount} SACRED</span>
+                    <span>${new Date().toLocaleTimeString()}</span>
+                </div>
+            `;
+            
+            const txList = document.getElementById('transactionsList');
+            txList.insertBefore(txElement, txList.firstChild);
+            
+            // Keep only latest 15 transactions
+            while (txList.children.length > 15) {
+                txList.removeChild(txList.lastChild);
+            }
+            
+            transactionCounter++;
+        }
+
+        function updateHeaderMetrics() {
+            if (window.corporateSimulation) {
+                const metrics = window.corporateSimulation.getMetrics();
+                document.getElementById('headerTPS').textContent = 
+                    Math.round(metrics.currentTPS).toLocaleString();
+                
+                // Update hero stats
+                document.getElementById('currentTPS').textContent = 
+                    Math.round(metrics.currentTPS).toLocaleString();
+                document.getElementById('peakTPS').textContent = 
+                    Math.round(metrics.peakTPS).toLocaleString();
+                document.getElementById('totalTransactions').textContent = 
+                    metrics.totalTransactions.toLocaleString();
+                document.getElementById('networkUptime').textContent = 
+                    metrics.networkUptime.toFixed(1) + '%';
+            }
+        }
+
+        // Analytics Chart
+        let analyticsChart;
+        let tpsData = [];
+
+        function initializeAnalyticsChart() {
+            const canvas = document.getElementById('analyticsChart');
+            analyticsChart = canvas.getContext('2d');
+            
+            // Initialize with zeros
+            tpsData = new Array(60).fill(0);
+        }
+
+        function updateAnalyticsChart() {
+            if (!analyticsChart || !window.corporateSimulation) return;
+            
+            const canvas = document.getElementById('analyticsChart');
+            const metrics = window.corporateSimulation.getMetrics();
+            
+            // Update data
+            tpsData.shift();
+            tpsData.push(metrics.currentTPS);
+            
+            // Clear canvas
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            
+            if (tpsData.some(val => val > 0)) {
+                const maxTPS = Math.max(...tpsData, 75000);
+                const width = canvas.width;
+                const height = canvas.height;
+                
+                // Create gradient
+                const gradient = analyticsChart.createLinearGradient(0, 0, 0, height);
+                gradient.addColorStop(0, 'rgba(16, 185, 129, 0.3)');
+                gradient.addColorStop(1, 'rgba(6, 182, 212, 0.1)');
+                
+                // Draw filled area
+                analyticsChart.fillStyle = gradient;
+                analyticsChart.beginPath();
+                analyticsChart.moveTo(0, height);
+                
+                tpsData.forEach((tps, i) => {
+                    const x = (i / (tpsData.length - 1)) * width;
+                    const y = height - (tps / maxTPS) * height * 0.9;
+                    analyticsChart.lineTo(x, y);
+                });
+                
+                analyticsChart.lineTo(width, height);
+                analyticsChart.closePath();
+                analyticsChart.fill();
+                
+                // Draw line
+                analyticsChart.strokeStyle = '#10b981';
+                analyticsChart.lineWidth = 3;
+                analyticsChart.beginPath();
+                
+                tpsData.forEach((tps, i) => {
+                    const x = (i / (tpsData.length - 1)) * width;
+                    const y = height - (tps / maxTPS) * height * 0.9;
+                    
+                    if (i === 0) {
+                        analyticsChart.moveTo(x, y);
+                    } else {
+                        analyticsChart.lineTo(x, y);
+                    }
+                });
+                
+                analyticsChart.stroke();
+            }
+        }
+
+        // Global functions for network controls
+        window.setTargetTPS = function(tps) {
+            if (window.corporateSimulation) {
+                window.corporateSimulation.setTargetTPS(tps);
+                console.log(`Target TPS set to: ${tps.toLocaleString()}`);
+            }
+        };
+
+        // Back to Home button functionality
+        document.getElementById('backToHome').addEventListener('click', () => {
+            window.location.href = '../index.html';
+        });
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (window.corporateSimulation) {
+                window.corporateSimulation.stop();
+            }
+        });
+    </script>
+</body>
+</html>
+            
