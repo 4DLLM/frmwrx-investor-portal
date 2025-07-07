@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sacred Nexus Demo Portal - FRMWRX Technologies</title>
+    <title>Redirecting to Corporate Demo - FRMWRX Technologies</title>
     <style>
         * {
             margin: 0;
@@ -13,263 +13,43 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            line-height: 1.6;
-            color: #1a1a1a;
-            background: #fafafa;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Header */
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid #e5e5e5;
-            padding: 0 24px;
-            position: relative;
-        }
-
-        .nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 64px;
-            position: relative;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: #000;
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #666;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: #000;
-        }
-
-        .btn {
-            padding: 8px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 14px;
-            transition: all 0.2s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-secondary {
-            color: #666;
-            background: transparent;
-        }
-
-        .btn-secondary:hover {
-            color: #000;
-        }
-
-        /* Main Content */
-        .portal-container {
-            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 40px 24px;
+            padding: 20px;
         }
 
-        .portal-card {
+        .redirect-container {
             background: white;
             border-radius: 16px;
             padding: 48px;
             max-width: 500px;
             width: 100%;
-            border: 1px solid #e5e5e5;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .portal-header {
             text-align: center;
-            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
-        .sacred-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #10b981, #0ea5e9);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 24px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .portal-title {
+        .logo {
             font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, #000 0%, #333 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-weight: 900;
+            color: #1f2937;
+            margin-bottom: 24px;
         }
 
-        .portal-subtitle {
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 8px;
-        }
-
-        .portal-description {
-            font-size: 16px;
-            color: #888;
-            margin-bottom: 32px;
-        }
-
-        /* Performance Metrics Preview */
-        .metrics-preview {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-bottom: 40px;
-            padding: 24px;
-            background: #f8f9fa;
-            border-radius: 12px;
-        }
-
-        .metric-preview {
-            text-align: center;
-        }
-
-        .metric-value {
+        .redirect-title {
             font-size: 24px;
             font-weight: 700;
-            color: #10b981;
-            margin-bottom: 4px;
+            color: #1f2937;
+            margin-bottom: 16px;
         }
 
-        .metric-label {
-            font-size: 12px;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Form */
-        .access-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .form-label {
-            font-size: 14px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .form-input {
-            padding: 12px 16px;
-            border: 1px solid #e5e5e5;
-            border-radius: 8px;
+        .redirect-message {
             font-size: 16px;
-            transition: all 0.2s ease;
-            background: white;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #10b981;
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #10b981, #0ea5e9);
-            color: white;
-            padding: 14px 24px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 8px;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-        }
-
-        .error-message {
-            background: #fee;
-            border: 1px solid #fcc;
-            color: #d00;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-top: 16px;
-            display: none;
-        }
-
-        .success-message {
-            background: #f0f9ff;
-            border: 1px solid #0ea5e9;
-            color: #0369a1;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-top: 16px;
-            display: none;
-        }
-
-        /* Footer */
-        .portal-footer {
-            text-align: center;
-            padding: 24px;
-            color: #666;
-            font-size: 14px;
-        }
-
-        .portal-footer a {
-            color: #10b981;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .portal-footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Loading State */
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 20px;
+            color: #6b7280;
+            margin-bottom: 32px;
+            line-height: 1.6;
         }
 
         .loading-spinner {
@@ -277,9 +57,10 @@
             width: 40px;
             height: 40px;
             border: 3px solid #f3f3f3;
-            border-top: 3px solid #10b981;
+            border-top: 3px solid #3b82f6;
             border-radius: 50%;
             animation: spin 1s linear infinite;
+            margin-bottom: 24px;
         }
 
         @keyframes spin {
@@ -287,438 +68,107 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Mobile Menu Toggle */
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 8px;
-            color: #666;
+        .manual-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 16px;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header {
-                padding: 0 16px;
-            }
-            
-            .nav {
-                height: 56px;
-                flex-wrap: wrap;
-                gap: 12px;
-            }
-            
-            .logo {
-                font-size: 20px;
-            }
-            
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(20px);
-                border-top: 1px solid #e5e5e5;
-                flex-direction: column;
-                padding: 16px;
-                gap: 16px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-                z-index: 1000;
-            }
-            
-            .nav-links.mobile-open {
-                display: flex;
-            }
-            
-            .nav-links li {
-                width: 100%;
-                text-align: center;
-            }
-            
-            .nav-links a {
-                display: block;
-                padding: 12px;
-                border-radius: 6px;
-                transition: background-color 0.2s ease;
-            }
-            
-            .nav-links a:hover {
-                background: #f5f5f5;
-            }
-            
-            .mobile-menu-toggle {
-                display: block;
-            }
-            
-            .btn-secondary {
-                padding: 8px 12px;
-                font-size: 12px;
-                order: 3;
-            }
-            
-            .portal-container {
-                padding: 20px 16px;
-            }
-            
-            .portal-card {
-                padding: 24px 20px;
-                border-radius: 12px;
-                margin: 0;
-            }
-            
-            .portal-header {
-                margin-bottom: 32px;
-            }
-            
-            .sacred-badge {
-                padding: 6px 12px;
-                font-size: 12px;
-                margin-bottom: 20px;
-            }
-            
-            .portal-title {
-                font-size: 24px;
-                line-height: 1.2;
-                margin-bottom: 12px;
-            }
-            
-            .portal-subtitle {
-                font-size: 16px;
-                margin-bottom: 8px;
-            }
-            
-            .portal-description {
-                font-size: 14px;
-                margin-bottom: 24px;
-            }
-            
-            .metrics-preview {
-                grid-template-columns: 1fr;
-                gap: 12px;
-                padding: 20px;
-                margin-bottom: 32px;
-            }
-            
-            .metric-preview {
-                padding: 12px 0;
-            }
-            
-            .metric-value {
-                font-size: 20px;
-            }
-            
-            .metric-label {
-                font-size: 11px;
-            }
-            
-            .access-form {
-                gap: 16px;
-            }
-            
-            .form-input {
-                padding: 14px 16px;
-                font-size: 16px;
-                border-radius: 8px;
-            }
-            
-            .btn-primary {
-                padding: 16px 24px;
-                font-size: 16px;
-                margin-top: 8px;
-            }
-            
-            .portal-footer {
-                padding: 20px 16px;
-                font-size: 13px;
-            }
+        .manual-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
         }
 
+        .performance-badge {
+            background: linear-gradient(135deg, #10b981, #0ea5e9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        /* Mobile responsive */
         @media (max-width: 480px) {
-            .header {
-                padding: 0 12px;
+            .redirect-container {
+                padding: 32px 24px;
+                margin: 16px;
             }
-            
-            .nav {
-                height: 52px;
+
+            .redirect-title {
+                font-size: 20px;
             }
-            
+
             .logo {
-                font-size: 18px;
-            }
-            
-            .btn-secondary {
-                padding: 6px 10px;
-                font-size: 11px;
-            }
-            
-            .portal-container {
-                padding: 16px 12px;
-            }
-            
-            .portal-card {
-                padding: 20px 16px;
-            }
-            
-            .portal-header {
-                margin-bottom: 24px;
-            }
-            
-            .sacred-badge {
-                padding: 4px 10px;
-                font-size: 11px;
-                margin-bottom: 16px;
-            }
-            
-            .portal-title {
-                font-size: 22px;
-            }
-            
-            .portal-subtitle {
-                font-size: 15px;
-            }
-            
-            .portal-description {
-                font-size: 13px;
-                margin-bottom: 20px;
-            }
-            
-            .metrics-preview {
-                padding: 16px;
-                margin-bottom: 24px;
-                gap: 10px;
-            }
-            
-            .metric-preview {
-                padding: 8px 0;
-            }
-            
-            .metric-value {
-                font-size: 18px;
-            }
-            
-            .metric-label {
-                font-size: 10px;
-            }
-            
-            .access-form {
-                gap: 14px;
-            }
-            
-            .form-label {
-                font-size: 13px;
-            }
-            
-            .form-input {
-                padding: 12px 14px;
-                font-size: 15px;
-            }
-            
-            .btn-primary {
-                padding: 14px 20px;
-                font-size: 15px;
-            }
-            
-            .portal-footer {
-                padding: 16px 12px;
-                font-size: 12px;
-            }
-            
-            .loading-spinner {
-                width: 32px;
-                height: 32px;
+                font-size: 28px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <a href="../index.html" class="logo">FRMWRX</a>
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="../index.html#technology">Technology</a></li>
-                <li><a href="../index.html#performance">Performance</a></li>
-                <li><a href="../index.html#team">Team</a></li>
-                <li><a href="../index.html#investment">Investment</a></li>
-            </ul>
-            <a href="../index.html" class="btn btn-secondary">← Back to Home</a>
-        </nav>
-    </header>
-
-    <!-- Main Content -->
-    <main class="portal-container">
-        <div class="portal-card">
-            <div class="portal-header">
-                <div class="sacred-badge">Sacred Nexus</div>
-                <h1 class="portal-title">Access Live Demo</h1>
-                <p class="portal-subtitle">71,347 TPS Blockchain Demo</p>
-                <p class="portal-description">Experience the future of blockchain technology</p>
-            </div>
-
-            <!-- Performance Metrics Preview -->
-            <div class="metrics-preview">
-                <div class="metric-preview">
-                    <div class="metric-value">71,347</div>
-                    <div class="metric-label">TPS</div>
-                </div>
-                <div class="metric-preview">
-                    <div class="metric-value">0.7ms</div>
-                    <div class="metric-label">Latency</div>
-                </div>
-                <div class="metric-preview">
-                    <div class="metric-value">99.1%</div>
-                    <div class="metric-label">Energy Saved</div>
-                </div>
-            </div>
-
-            <!-- Access Form -->
-            <form id="accessForm" class="access-form">
-                <div class="form-group">
-                    <label class="form-label" for="email">Email Address</label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        class="form-input" 
-                        placeholder="investor@company.com"
-                        required
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="company">Company Name</label>
-                    <input 
-                        type="text" 
-                        id="company" 
-                        name="company" 
-                        class="form-input" 
-                        placeholder="Venture Capital Inc."
-                        required
-                    >
-                </div>
-
-                <button type="submit" class="btn-primary">Access Demo</button>
-
-                <div id="errorMessage" class="error-message"></div>
-                <div id="successMessage" class="success-message"></div>
-                
-                <div id="loading" class="loading">
-                    <div class="loading-spinner"></div>
-                    <p style="margin-top: 16px; color: #666;">Initializing Sacred Nexus...</p>
-                </div>
-            </form>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="portal-footer">
-        <p>Patent Protected • FRMWRX Technologies</p>
-        <p>Questions? <a href="mailto:invest.frmwrx@proton.me">Contact our team</a></p>
-    </footer>
+    <div class="redirect-container">
+        <div class="logo">FRMWRX</div>
+        <div class="performance-badge">71,347 TPS Performance</div>
+        <h1 class="redirect-title">Redirecting to Corporate Demo</h1>
+        <p class="redirect-message">
+            You're being redirected to our Sacred Nexus Corporate Network Demo featuring 
+            breakthrough blockchain performance with 71,347 TPS and 0.7ms latency.
+        </p>
+        
+        <div class="loading-spinner"></div>
+        
+        <p style="color: #6b7280; font-size: 14px; margin-bottom: 16px;">
+            Initializing Sacred Nexus simulation...
+        </p>
+        
+        <a href="corporate-dashboard.html" class="manual-link">
+            Access Demo Manually
+        </a>
+    </div>
 
     <script>
-        // Mobile menu toggle functionality
-        function toggleMobileMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('mobile-open');
+        // Automatic redirect to corporate dashboard
+        setTimeout(() => {
+            window.location.href = 'corporate-dashboard.html';
+        }, 3000);
+
+        // Track the redirect for analytics
+        if (typeof window !== 'undefined') {
+            // Store visitor data for analytics
+            const visitorData = {
+                timestamp: Date.now(),
+                url: window.location.href,
+                userAgent: navigator.userAgent,
+                sessionId: sessionStorage.getItem('frmwrx_session_id') || 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+                action: 'portal_redirect'
+            };
+
+            // Store session ID for tracking
+            if (!sessionStorage.getItem('frmwrx_session_id')) {
+                sessionStorage.setItem('frmwrx_session_id', visitorData.sessionId);
+            }
+
+            // Store visitor data
+            const existingVisitors = JSON.parse(localStorage.getItem('frmwrx_visitors') || '[]');
+            existingVisitors.push(visitorData);
+            localStorage.setItem('frmwrx_visitors', JSON.stringify(existingVisitors));
+
+            // Update visitor count
+            const currentCount = parseInt(localStorage.getItem('frmwrx_visitor_count') || '0');
+            localStorage.setItem('frmwrx_visitor_count', (currentCount + 1).toString());
+
+            console.log('Portal redirect tracked for analytics');
         }
-
-        // Mobile menu setup
-        document.addEventListener('DOMContentLoaded', function() {
-            // Show mobile menu toggle on mobile
-            function updateMobileMenu() {
-                const toggle = document.querySelector('.mobile-menu-toggle');
-                if (window.innerWidth <= 768) {
-                    toggle.style.display = 'block';
-                } else {
-                    toggle.style.display = 'none';
-                    document.getElementById('navLinks').classList.remove('mobile-open');
-                }
-            }
-
-            updateMobileMenu();
-            window.addEventListener('resize', updateMobileMenu);
-            
-            // Close mobile menu when clicking on a link
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', () => {
-                    document.getElementById('navLinks').classList.remove('mobile-open');
-                });
-            });
-        });
-
-        // Pre-configured credentials
-        const DEMO_CREDENTIALS = {
-            email: 'invest.frmwrx@proton.me',
-            password: 'sexynexus12'
-        };
-
-        // Form submission handler
-        document.getElementById('accessForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const company = document.getElementById('company').value;
-            const errorDiv = document.getElementById('errorMessage');
-            const successDiv = document.getElementById('successMessage');
-            const loadingDiv = document.getElementById('loading');
-            const form = document.getElementById('accessForm');
-            
-            // Hide messages
-            errorDiv.style.display = 'none';
-            successDiv.style.display = 'none';
-            
-            // Validate email format
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                errorDiv.textContent = 'Please enter a valid email address';
-                errorDiv.style.display = 'block';
-                return;
-            }
-            
-            // Show loading state
-            form.style.display = 'none';
-            loadingDiv.style.display = 'block';
-            
-            // Simulate authentication delay
-            setTimeout(() => {
-                // Store access credentials in sessionStorage
-                sessionStorage.setItem('sacredNexusAccess', JSON.stringify({
-                    email: email,
-                    company: company,
-                    timestamp: Date.now(),
-                    authorized: true
-                }));
-                
-                // For demo purposes, check if it's the pre-configured account
-                if (email === DEMO_CREDENTIALS.email) {
-                    sessionStorage.setItem('sacredNexusAuth', JSON.stringify({
-                        ...DEMO_CREDENTIALS,
-                        fullAccess: true
-                    }));
-                }
-                
-                // Show success message
-                loadingDiv.style.display = 'none';
-                successDiv.textContent = 'Access granted! Redirecting to Sacred Nexus demo...';
-                successDiv.style.display = 'block';
-                
-                // Redirect to demo page
-                setTimeout(() => {
-                    window.location.href = 'demo.html';
-                }, 1500);
-            }, 2000);
-        });
-
-        // Auto-focus on email field
-        window.addEventListener('load', () => {
-            document.getElementById('email').focus();
-        });
     </script>
 </body>
 </html>

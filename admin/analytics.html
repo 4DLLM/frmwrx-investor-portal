@@ -251,10 +251,48 @@
     </style>
 </head>
 <body>
+    <!-- Authentication Check -->
+    <script>
+        // Check authentication before loading the page
+        (function() {
+            const adminAuth = sessionStorage.getItem('frmwrx_admin_auth');
+            
+            if (!adminAuth) {
+                // No authentication found, redirect to login
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            try {
+                const auth = JSON.parse(adminAuth);
+                
+                // Check if session is still valid (24 hours)
+                if (!auth.authenticated || (Date.now() - auth.timestamp) > 24 * 60 * 60 * 1000) {
+                    // Session expired, clear and redirect
+                    sessionStorage.removeItem('frmwrx_admin_auth');
+                    window.location.href = 'login.html';
+                    return;
+                }
+                
+                // Authentication valid, continue loading page
+                console.log('Admin authenticated:', auth.username);
+                
+            } catch (e) {
+                // Invalid session data, clear and redirect
+                sessionStorage.removeItem('frmwrx_admin_auth');
+                window.location.href = 'login.html';
+                return;
+            }
+        })();
+    </script>
+
     <header class="header">
         <div class="header-content">
             <div class="logo">FRMWRX Analytics</div>
-            <div class="admin-badge">Admin Dashboard</div>
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <div class="admin-badge">Admin Dashboard</div>
+                <button onclick="logout()" style="background: #ef4444; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Logout</button>
+            </div>
         </div>
     </header>
 
@@ -460,9 +498,9 @@
 
         function exportData() {
             // In a real implementation, this would export actual analytics data
-            const csvContent = "data:text/csv;charset=utf-8," + 
+            const csvContent = "data:text/csv;charset=utf-8," +
                 "Timestamp,IP Address,Location,Page Visited,Duration,User Agent\n" +
-                sampleVisitors.map(v => 
+                sampleVisitors.map(v =>
                     `"${v.timestamp}","${v.ip}","${v.location}","${v.page}","${v.duration}","${v.userAgent}"`
                 ).join("\n");
             
@@ -473,6 +511,14 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+        }
+
+        function logout() {
+            // Clear admin session
+            sessionStorage.removeItem('frmwrx_admin_auth');
+            
+            // Redirect to login page
+            window.location.href = 'login.html';
         }
 
         // Initialize with real data
