@@ -574,6 +574,10 @@
             font-size: 14px;
         }
 
+        /* Hide mobile-only items on desktop */
+        .mobile-only {
+            display: none;
+        }
 
         @media (max-width: 768px) {
             .header {
@@ -632,7 +636,7 @@
             }
             
             .mobile-menu-toggle {
-                display: block;
+                display: block !important;
                 background: none;
                 border: none;
                 font-size: 24px;
@@ -641,11 +645,21 @@
                 color: #666;
             }
             
+            .mobile-only {
+                display: block;
+            }
+            
+            .mobile-only .btn {
+                margin: 8px auto;
+                display: block;
+                width: fit-content;
+                padding: 12px 24px;
+                font-size: 14px;
+                text-align: center;
+            }
+            
             .cta-buttons {
-                flex-direction: column;
-                gap: 8px;
-                width: 100%;
-                order: 3;
+                display: none;
             }
             
             .btn {
@@ -1301,13 +1315,16 @@
     <header class="header">
         <nav class="nav">
             <a href="#" class="logo">FRMWRX</a>
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" style="display: none;">☰</button>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#technology">Technology</a></li>
                 <li><a href="#performance">Performance</a></li>
                 <li><a href="#team">Team</a></li>
                 <li><a href="#investment">Investment</a></li>
                 <li><a href="admin/analytics.html" class="admin-link">Analytics</a></li>
+                <li class="mobile-only"><a href="portal/corporate-dashboard.html" class="btn btn-primary">Corporate Demo</a></li>
+                <li class="mobile-only"><a href="portal/index.html" class="btn btn-secondary">Demo Portal</a></li>
+                <li class="mobile-only"><a href="mailto:invest.frmwrx@proton.me" class="btn btn-secondary">Contact</a></li>
             </ul>
             <div class="cta-buttons">
                 <a href="portal/corporate-dashboard.html" class="btn btn-primary">Corporate Demo</a>
