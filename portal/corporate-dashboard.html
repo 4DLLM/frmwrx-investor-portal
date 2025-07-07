@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corporate Network Simulation - Sacred Nexus Enterprise | FRMWRX</title>
+    <!-- Visitor Tracking -->
+    <script src="../js/visitor-tracking.js"></script>
     <style>
         * {
             margin: 0;
@@ -563,6 +565,17 @@
             100% { width: 100%; }
         }
 
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+            color: #666;
+        }
+
         /* Responsive Design */
         @media (max-width: 1200px) {
             .dashboard-grid {
@@ -577,27 +590,347 @@
         }
 
         @media (max-width: 768px) {
+            .corporate-header {
+                padding: 0 16px;
+            }
+            
             .header-nav {
-                padding: 16px 0;
+                padding: 12px 0;
                 flex-wrap: wrap;
                 height: auto;
+                gap: 12px;
+            }
+            
+            .corporate-logo {
+                gap: 12px;
+            }
+            
+            .logo-text {
+                font-size: 22px;
+            }
+            
+            .enterprise-badge {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+            
+            .header-controls {
+                flex-wrap: wrap;
+                gap: 12px;
+                width: 100%;
+                justify-content: space-between;
             }
             
             .performance-indicator {
                 display: none;
             }
             
-            .hero-title {
-                font-size: 36px;
+            .control-btn {
+                padding: 8px 16px;
+                font-size: 12px;
+                flex: 1;
+                min-width: 120px;
             }
             
             .dashboard-container {
+                padding-top: 100px;
                 padding-left: 16px;
                 padding-right: 16px;
             }
             
+            .hero-section {
+                padding: 20px 0;
+                margin-bottom: 24px;
+            }
+            
+            .hero-title {
+                font-size: 28px;
+                line-height: 1.2;
+                margin-bottom: 12px;
+            }
+            
+            .hero-subtitle {
+                font-size: 16px;
+                margin-bottom: 24px;
+            }
+            
             .performance-stats {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+                margin-bottom: 24px;
+            }
+            
+            .stat-card {
+                padding: 16px;
+            }
+            
+            .stat-value {
+                font-size: 24px;
+            }
+            
+            .stat-label {
+                font-size: 12px;
+            }
+            
+            .dashboard-grid {
+                gap: 20px;
+            }
+            
+            .network-container {
+                padding: 20px;
+                border-radius: 16px;
+            }
+            
+            .network-header {
+                flex-direction: column;
+                gap: 16px;
+                margin-bottom: 20px;
+            }
+            
+            .network-title {
+                font-size: 20px;
+                text-align: center;
+            }
+            
+            .network-controls {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .network-btn {
+                padding: 8px 12px;
+                font-size: 11px;
+                min-width: 70px;
+            }
+            
+            #networkCanvas {
+                height: 400px;
+            }
+            
+            .metrics-panel {
+                display: none;
+            }
+            
+            .metrics-card {
+                padding: 20px;
+                border-radius: 12px;
+            }
+            
+            .metrics-title {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+            
+            .metric-item {
+                padding: 16px;
+                margin-bottom: 12px;
+            }
+            
+            .metric-value {
+                font-size: 24px;
+            }
+            
+            .metric-label {
+                font-size: 11px;
+            }
+            
+            .metric-change {
+                font-size: 12px;
+            }
+            
+            .transaction-feed {
+                padding: 20px;
+                height: 350px;
+            }
+            
+            .feed-title {
+                font-size: 18px;
+                margin-bottom: 16px;
+            }
+            
+            .transaction-item {
+                padding: 12px;
+                margin-bottom: 10px;
+            }
+            
+            .tx-hash {
+                font-size: 12px;
+            }
+            
+            .tx-type {
+                font-size: 9px;
+                padding: 2px 6px;
+            }
+            
+            .tx-details {
+                font-size: 11px;
+            }
+            
+            .analytics-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .analytics-chart {
+                padding: 20px;
+                height: 250px;
+            }
+            
+            .chart-title {
+                font-size: 18px;
+                margin-bottom: 16px;
+            }
+            
+            .loading-logo {
+                width: 100px;
+                height: 100px;
+                font-size: 40px;
+                margin-bottom: 30px;
+            }
+            
+            .loading-text {
+                font-size: 24px;
+            }
+            
+            .loading-subtext {
+                font-size: 14px;
+                margin-bottom: 24px;
+            }
+            
+            .loading-progress {
+                width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-nav {
+                padding: 8px 0;
+            }
+            
+            .logo-text {
+                font-size: 20px;
+            }
+            
+            .enterprise-badge {
+                padding: 4px 8px;
+                font-size: 10px;
+            }
+            
+            .control-btn {
+                padding: 6px 12px;
+                font-size: 11px;
+                min-width: 100px;
+            }
+            
+            .dashboard-container {
+                padding-top: 90px;
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+            
+            .hero-title {
+                font-size: 24px;
+            }
+            
+            .hero-subtitle {
+                font-size: 14px;
+            }
+            
+            .performance-stats {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .stat-card {
+                padding: 12px;
+            }
+            
+            .stat-value {
+                font-size: 20px;
+            }
+            
+            .network-container {
+                padding: 16px;
+            }
+            
+            .network-title {
+                font-size: 18px;
+            }
+            
+            .network-controls {
+                gap: 6px;
+            }
+            
+            .network-btn {
+                padding: 6px 10px;
+                font-size: 10px;
+                min-width: 60px;
+            }
+            
+            #networkCanvas {
+                height: 300px;
+            }
+            
+            .metrics-panel {
+                display: none;
+            }
+            
+            .metrics-card {
+                padding: 16px;
+            }
+            
+            .metrics-title {
+                font-size: 16px;
+            }
+            
+            .metric-item {
+                padding: 12px;
+            }
+            
+            .metric-value {
+                font-size: 20px;
+            }
+            
+            .transaction-feed {
+                padding: 16px;
+                height: 300px;
+            }
+            
+            .feed-title {
+                font-size: 16px;
+            }
+            
+            .transaction-item {
+                padding: 10px;
+            }
+            
+            .analytics-chart {
+                padding: 16px;
+                height: 200px;
+            }
+            
+            .chart-title {
+                font-size: 16px;
+            }
+            
+            .loading-logo {
+                width: 80px;
+                height: 80px;
+                font-size: 32px;
+                margin-bottom: 20px;
+            }
+            
+            .loading-text {
+                font-size: 20px;
+            }
+            
+            .loading-subtext {
+                font-size: 12px;
+            }
+            
+            .loading-progress {
+                width: 200px;
             }
         }
     </style>

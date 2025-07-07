@@ -27,6 +27,7 @@
             backdrop-filter: blur(20px);
             border-bottom: 1px solid #e5e5e5;
             padding: 0 24px;
+            position: relative;
         }
 
         .nav {
@@ -36,6 +37,7 @@
             justify-content: space-between;
             align-items: center;
             height: 64px;
+            position: relative;
         }
 
         .logo {
@@ -285,23 +287,249 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+            color: #666;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
+            .header {
+                padding: 0 16px;
+            }
+            
+            .nav {
+                height: 56px;
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+            
+            .logo {
+                font-size: 20px;
+            }
+            
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                border-top: 1px solid #e5e5e5;
+                flex-direction: column;
+                padding: 16px;
+                gap: 16px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+            
+            .nav-links.mobile-open {
+                display: flex;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 12px;
+                border-radius: 6px;
+                transition: background-color 0.2s ease;
+            }
+            
+            .nav-links a:hover {
+                background: #f5f5f5;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .btn-secondary {
+                padding: 8px 12px;
+                font-size: 12px;
+                order: 3;
+            }
+            
+            .portal-container {
+                padding: 20px 16px;
             }
             
             .portal-card {
-                padding: 32px 24px;
+                padding: 24px 20px;
+                border-radius: 12px;
+                margin: 0;
+            }
+            
+            .portal-header {
+                margin-bottom: 32px;
+            }
+            
+            .sacred-badge {
+                padding: 6px 12px;
+                font-size: 12px;
+                margin-bottom: 20px;
             }
             
             .portal-title {
-                font-size: 28px;
+                font-size: 24px;
+                line-height: 1.2;
+                margin-bottom: 12px;
+            }
+            
+            .portal-subtitle {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+            
+            .portal-description {
+                font-size: 14px;
+                margin-bottom: 24px;
             }
             
             .metrics-preview {
                 grid-template-columns: 1fr;
                 gap: 12px;
+                padding: 20px;
+                margin-bottom: 32px;
+            }
+            
+            .metric-preview {
+                padding: 12px 0;
+            }
+            
+            .metric-value {
+                font-size: 20px;
+            }
+            
+            .metric-label {
+                font-size: 11px;
+            }
+            
+            .access-form {
+                gap: 16px;
+            }
+            
+            .form-input {
+                padding: 14px 16px;
+                font-size: 16px;
+                border-radius: 8px;
+            }
+            
+            .btn-primary {
+                padding: 16px 24px;
+                font-size: 16px;
+                margin-top: 8px;
+            }
+            
+            .portal-footer {
+                padding: 20px 16px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 0 12px;
+            }
+            
+            .nav {
+                height: 52px;
+            }
+            
+            .logo {
+                font-size: 18px;
+            }
+            
+            .btn-secondary {
+                padding: 6px 10px;
+                font-size: 11px;
+            }
+            
+            .portal-container {
+                padding: 16px 12px;
+            }
+            
+            .portal-card {
+                padding: 20px 16px;
+            }
+            
+            .portal-header {
+                margin-bottom: 24px;
+            }
+            
+            .sacred-badge {
+                padding: 4px 10px;
+                font-size: 11px;
+                margin-bottom: 16px;
+            }
+            
+            .portal-title {
+                font-size: 22px;
+            }
+            
+            .portal-subtitle {
+                font-size: 15px;
+            }
+            
+            .portal-description {
+                font-size: 13px;
+                margin-bottom: 20px;
+            }
+            
+            .metrics-preview {
+                padding: 16px;
+                margin-bottom: 24px;
+                gap: 10px;
+            }
+            
+            .metric-preview {
+                padding: 8px 0;
+            }
+            
+            .metric-value {
+                font-size: 18px;
+            }
+            
+            .metric-label {
+                font-size: 10px;
+            }
+            
+            .access-form {
+                gap: 14px;
+            }
+            
+            .form-label {
+                font-size: 13px;
+            }
+            
+            .form-input {
+                padding: 12px 14px;
+                font-size: 15px;
+            }
+            
+            .btn-primary {
+                padding: 14px 20px;
+                font-size: 15px;
+            }
+            
+            .portal-footer {
+                padding: 16px 12px;
+                font-size: 12px;
+            }
+            
+            .loading-spinner {
+                width: 32px;
+                height: 32px;
             }
         }
     </style>
@@ -311,7 +539,8 @@
     <header class="header">
         <nav class="nav">
             <a href="../index.html" class="logo">FRMWRX</a>
-            <ul class="nav-links">
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="../index.html#technology">Technology</a></li>
                 <li><a href="../index.html#performance">Performance</a></li>
                 <li><a href="../index.html#team">Team</a></li>
@@ -393,6 +622,36 @@
     </footer>
 
     <script>
+        // Mobile menu toggle functionality
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('mobile-open');
+        }
+
+        // Mobile menu setup
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show mobile menu toggle on mobile
+            function updateMobileMenu() {
+                const toggle = document.querySelector('.mobile-menu-toggle');
+                if (window.innerWidth <= 768) {
+                    toggle.style.display = 'block';
+                } else {
+                    toggle.style.display = 'none';
+                    document.getElementById('navLinks').classList.remove('mobile-open');
+                }
+            }
+
+            updateMobileMenu();
+            window.addEventListener('resize', updateMobileMenu);
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.getElementById('navLinks').classList.remove('mobile-open');
+                });
+            });
+        });
+
         // Pre-configured credentials
         const DEMO_CREDENTIALS = {
             email: 'invest.frmwrx@proton.me',
